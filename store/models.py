@@ -4,12 +4,12 @@ from django.db import models
 # Create your models here.
 """
 Product
-- nom
-- prix
+- name
+- price
 - available
 - description
-- image
-- autres variantes
+- images
+- others variants
 """
 class Product (models.Model):
     name = models.CharField(max_length=200)
