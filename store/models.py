@@ -11,11 +11,17 @@ Product
 - images
 - others variants
 """
-class Product (models.Model):
+class Variant(models.Model):
+    name = models.CharField(max_length=100)
+
+class Product(models.Model):
     name = models.CharField(max_length=200)
     price = models.FloatField(default=0.0)
     available = models.BooleanField(default=True)
-    description = models.TextField(blank=True) #Allow admin to register items without description
-    thumbnail = models.ImageField(upload_to="products", blank=True, null=True) #Stores Images in folder named 'products'
-    variantIds = ArrayField(models.IntegerField(), blank=True)
+    description = models.TextField(blank=True)
+    thumbnail = models.ImageField(upload_to="products", blank=True, null=True)
+    variants = models.ManyToManyField("self", blank=True, symmetrical=False)
+
+    def __str__(self):
+        return self.name
 
