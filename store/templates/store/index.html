@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>La boutique de cadeaux</h1>
+
+{% for product in products %}
+  <h2>{{ product.name }}</h2>
+{% if product.thumbnail %}
+            <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width: 250px">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+{% endfor %}
+
+{% endblock %}
