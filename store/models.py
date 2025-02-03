@@ -31,29 +31,17 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# article (Order)
-"""
--user
--product
--stock
--ordered or not
-"""
+# (Order)
 class Order(models.Model):
     user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE) #user relie a plusieurs articles grace a foreignKey() - on_delete-> si user deleted from db if will erase his stored products
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField(default=1)
+    quantity = models.IntegerField(default=1) # quantity of one item in the cart
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.product.name} ({self.quantity})"
 
-# panier (Cart)
-"""
--user
--products
--ordered or not
--date of order
-"""
+# (Cart)
 class Cart(models.Model):
     user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
     orders = models.ManyToManyField(Order)
@@ -62,3 +50,4 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.user.username
+
