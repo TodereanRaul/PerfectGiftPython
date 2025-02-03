@@ -1,6 +1,8 @@
 from django.urls import reverse
 from django.utils.text import slugify
 from django.db import models
+from shop.settings import AUTH_USER_MODEL
+
 
 class Variant(models.Model):
     name = models.CharField(max_length=100)
@@ -28,3 +30,35 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+# article (Order)
+"""
+-user
+-product
+-stock
+-ordered or not
+"""
+class Order(models.Model):
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE) #user relie a plusieurs articles grace a foreignKey() - on_delete-> si user deleted from db if will erase his stored products
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    ordered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.product.name} ({self.quantity})"
+
+# panier (Cart)
+"""
+-user
+-products
+-ordered or not
+-date of order
+"""
+class Cart(models.Model):
+    user = models.OneToOneField(AUTH_USER_MODEL, on_delete=models.CASCADE)
+    orders = models.ManyToManyField(Order)
+    ordered = models.BooleanField(default=False)
+    ordered_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username
