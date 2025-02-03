@@ -1,9 +1,9 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from zope.interface import named
 
-from store.views import index, product_detail
+
+from store.views import index, product_detail, add_to_cart
 from accounts.views import signup, login_user
 from accounts.views import signout
 
@@ -15,5 +15,6 @@ urlpatterns = [
     path('signup/', signup, name="signup"),
     path('signout', signout, name="signout"),
     path('login', login_user, name="login"),
-    path('product/<str:slug>/', product_detail, name="product")
+    path('product/<str:slug>/', product_detail, name="product"),
+    path('product/<str:slug>/add-to-cart/', add_to_cart, name="add-to-cart")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #this allows to show img in local dev mode -- NEEDS TO BE CHANGED WHEN LIVE
