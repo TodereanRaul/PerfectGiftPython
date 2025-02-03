@@ -7,11 +7,12 @@
 <body>
 <a href="{% url 'index' %}"><h1>La boutique de cadeaux</h1></a>
 
-{% if not user.is_authenticated %}
-    <p>User is not authenticated</p>
-    <a href="{% url 'signup' %}">S'inscrire</a>
+{% if user.is_authenticated %}
+    {{ user.username }}
+    <a href="{% url 'signout' %}">Se deconnecter</a>
 {% else %}
-    <p>User is authenticated</p>
+    <a href="{% url 'signup' %}">S'inscrire</a>
+    <a href="{% url 'login' %}">Se connecter</a>
 {% endif %}
 
 
