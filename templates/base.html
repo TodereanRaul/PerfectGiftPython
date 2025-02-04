@@ -1,8 +1,11 @@
+{% load static tailwind_tags %}
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>The Perfect Gift</title>
+    {% tailwind_css %}
 </head>
 <body>
 <a href="{% url 'index' %}"><h1>La boutique de cadeaux</h1></a>
@@ -14,7 +17,6 @@
     <a href="{% url 'signup' %}">S'inscrire</a>
     <a href="{% url 'login' %}">Se connecter</a>
 {% endif %}
-
 
 {% block content %}
 {% endblock %}
