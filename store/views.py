@@ -14,7 +14,7 @@ def product_detail(request, slug):
 
 def add_to_cart(request, slug):
     user = request.user # get user
-    product = get_object_or_404(Product) # get products if exist
+    product = get_object_or_404(Product, slug=slug)
     cart, _ = Cart.objects.get_or_create(user=user)  # Get or create cart
     order, created = Order.objects.get_or_create(user=user, product=product) # Get or create order
 
@@ -26,3 +26,17 @@ def add_to_cart(request, slug):
         order.save()
 
     return redirect(reverse("product", kwargs={"slug": slug}))
+
+def delete_cart(request):
+    cart = getattr(request.user, "cart", None)  
+    
+    if cart:
+        cart.orders.all().delete()
+        cart.delete()
+    
+    return redirect("index")
+
+
+def cart(request):
+    cart = get_object_or_404(Cart, user=request.user)
+    return render(request, 'store/cart.html', context={"cart": cart, "orders": cart.orders.all()})
