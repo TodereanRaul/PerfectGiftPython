@@ -1,14 +1,11 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% block content %}
 
 <h2>{{ product.name }}</h2>
 <h3>€{{ product.price }}</h3>
 
 {% if product.thumbnail and product.thumbnail.url %}
-<img
-  src="{{ product.thumbnail.url }}"
-  alt="{{ product.name }}"
-  style="max-width: 250px"
-/>
+<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width: 250px" />
 {% else %}
 <p>No image available</p>
 {% endif %}
@@ -17,7 +14,9 @@
 
 {% if user.is_authenticated %}
 <a href="{% url 'add-to-cart' product.slug %}">Ajouter au panier</a>
-{% endif %} {% if product.variants.exists %}
+{% endif %}
+
+{% if product.variants.exists %}
 <h3>Variantes disponibles :</h3>
 <ul>
   {% for variant in product.variants.all %}
@@ -29,4 +28,20 @@
 </ul>
 {% else %}
 <p>Aucune variante disponible.</p>
-{% endif %} {% endblock %}
+{% endif %}
+
+<!-- Affichage du commentaire existant -->
+{% if product.user_comment %}
+  <h3>Commentaire :</h3>
+  <p>{{ product.user_comment }}</p>
+{% endif %}
+
+<!-- Formulaire pour ajouter un commentaire -->
+<h3>Ajouter un commentaire</h3>
+<form method="post">
+  {% csrf_token %}
+  <textarea id="comment" name="comment" rows="4" placeholder="Écrivez votre commentaire ici..."></textarea>
+  <button type="submit">Envoyer</button>
+</form>
+
+{% endblock %}

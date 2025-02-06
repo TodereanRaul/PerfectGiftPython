@@ -15,6 +15,12 @@ def index(request):
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
+    if request.method == "POST":
+        comment = request.POST.get("comment")
+        if comment:
+            product.user_comment = comment  # Sauvegarde du commentaire
+            product.save()
+            return redirect("product", slug=product.slug)  # Rafraîchit la page
     return render(request, 'store/product-detail.html', context={"product": product})
 
 def add_to_cart(request, slug):
