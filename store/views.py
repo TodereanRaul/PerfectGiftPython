@@ -66,8 +66,8 @@ def create_checkout_session(request):
                 },
             ],
             mode='payment',
-            success_url=YOUR_DOMAIN + '/index/',  # Corrected URL
-            cancel_url=YOUR_DOMAIN + '/index/',
+            success_url=YOUR_DOMAIN + '/',  # Corrected URL
+            cancel_url=YOUR_DOMAIN + '/',
         )
 
         # Redirect to Stripe checkout page
