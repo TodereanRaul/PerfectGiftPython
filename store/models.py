@@ -21,6 +21,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to="products", blank=True, null=True)
     variants = models.ManyToManyField("self", blank=True, symmetrical=False)
+    stripe_id = models.CharField(max_length=90, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:  # Generate slug only if it's empty
