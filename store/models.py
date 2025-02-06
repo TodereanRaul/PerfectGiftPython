@@ -21,6 +21,7 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     thumbnail = models.ImageField(upload_to="products", blank=True, null=True)
     variants = models.ManyToManyField("self", blank=True, symmetrical=False)
+    user_comment = models.TextField(blank=True, null=True)  # Ajout du champ commentaire
     stripe_id = models.CharField(max_length=90, blank=True)
 
     def save(self, *args, **kwargs):
