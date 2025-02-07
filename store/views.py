@@ -6,6 +6,8 @@ from django.urls import reverse
 from shop import settings
 from store.models import Product, Cart, Order  # import product
 
+YOUR_DOMAIN = 'http://localhost:8000'
+
 stripe.api_key = settings.STRIPE_API_KEY
 
 def index(request):
@@ -52,25 +54,17 @@ def cart(request):
     return render(request, 'store/cart.html', context={"cart": cart, "orders": cart.orders.all()})
 
 
-YOUR_DOMAIN = 'http://localhost:8000'
 def create_checkout_session(request):
+    cart = request.user.cart
+    line_items = [{"price": order.product.stripe_id,
+                   "quantity": order.quantity} for order in cart.orders.all()]
+
     try:
         # Create a checkout session
         checkout_session = stripe.checkout.Session.create(
             locale="fr",
             payment_method_types=['card'],  # Only card payments
-            line_items=[
-                {
-                    'price_data': {  # Corrected key
-                        'currency': 'usd',
-                        'product_data': {
-                            'name': 'T-Shirt',  # Use real product name
-                        },
-                        'unit_amount': 2000,  # Amount in cents ($20.00)
-                    },
-                    'quantity': 1,
-                },
-            ],
+            line_items=line_items,
             mode='payment',
             success_url=YOUR_DOMAIN + '/',  # Corrected URL
             cancel_url=YOUR_DOMAIN + '/',

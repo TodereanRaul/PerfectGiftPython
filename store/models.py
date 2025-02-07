@@ -1,5 +1,4 @@
-
-
+from ckeditor.fields import RichTextField
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
@@ -15,26 +14,32 @@ class Variant(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=200)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)  # Ensure uniqueness & allow auto-generation
+    slug = models.SlugField(max_length=100, unique=True, blank=True)  # Slug généré automatiquement si vide
     price = models.FloatField(default=0.0)
     available = models.BooleanField(default=True)
-    description = models.TextField(blank=True)
-    thumbnail = models.ImageField(upload_to="products", blank=True, null=True)
+    description = RichTextField(blank=True)  # RichText pour mise en forme
+    thumbnail = models.ImageField(upload_to="products", blank=True, null=True)  # Image principale
     variants = models.ManyToManyField("self", blank=True, symmetrical=False)
-    user_comment = models.TextField(blank=True, null=True)  # Ajout du champ commentaire
+    user_comment = models.TextField(blank=True, null=True)
     stripe_id = models.CharField(max_length=90, blank=True)
 
     def save(self, *args, **kwargs):
-        if not self.slug:  # Generate slug only if it's empty
+        if not self.slug:  # Générer le slug automatiquement
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    # obtenir à partir du nom d'url ('product') et des infos passés à l'url ('slug') l'adresse vers la page du produit
     def get_absolute_url(self):
         return reverse("product", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.name
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
+    image = models.ImageField(upload_to="product_images", blank=True, null=True)
+
+    def __str__(self):
+        return f"Image de {self.product.name}"
 
 # (Order)
 class Order(models.Model):
