@@ -4,30 +4,48 @@
 <h2>{{ product.name }}</h2>
 <h3>€{{ product.price }}</h3>
 
+<!-- Affichage de l'image principale -->
 {% if product.thumbnail and product.thumbnail.url %}
-<img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width: 250px" />
+  <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" style="max-width: 250px;" />
 {% else %}
-<p>No image available</p>
+  <p>No image available</p>
 {% endif %}
 
-<p>{{ product.description }}</p>
+<!-- Description du produit -->
+<p>{{ product.description|safe }}</p>
 
+<!-- Bouton "Ajouter au panier" -->
 {% if user.is_authenticated %}
-<a href="{% url 'add-to-cart' product.slug %}">Ajouter au panier</a>
+  <a href="{% url 'add-to-cart' product.slug %}">Ajouter au panier</a>
 {% endif %}
 
+<!-- Affichage des variantes -->
 {% if product.variants.exists %}
-<h3>Variantes disponibles :</h3>
-<ul>
-  {% for variant in product.variants.all %}
-  <li>
-    <a href="{{ variant.get_absolute_url }}">{{ variant.name }}</a>
-    - €{{ variant.price }}
-  </li>
-  {% endfor %}
-</ul>
+  <h3>Variantes disponibles :</h3>
+  <ul>
+    {% for variant in product.variants.all %}
+      <li>
+        <a href="{{ variant.get_absolute_url }}">{{ variant.name }}</a>
+        - €{{ variant.price }}
+      </li>
+    {% endfor %}
+  </ul>
 {% else %}
-<p>Aucune variante disponible.</p>
+  <p>Aucune variante disponible.</p>
+{% endif %}
+
+<!-- Affichage des images supplémentaires -->
+{% if product.images.exists %}  <!-- Utilisez la relation `related_name` définie dans le modèle -->
+  <h3>Autres images :</h3>
+  <div class="additional-images" style="display: flex; flex-wrap: wrap;">
+    {% for image in product.images.all %}
+      <div style="margin-right: 10px; margin-bottom: 10px;">
+        <img src="{{ image.image.url }}" alt="{{ product.name }}" style="max-width: 150px;" />
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>Aucune image supplémentaire disponible.</p>
 {% endif %}
 
 <!-- Affichage du commentaire existant -->

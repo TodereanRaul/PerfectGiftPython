@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'store',
     'accounts',
+    'ckeditor',
     'tailwind',
     'theme',
     'django_browser_reload'
