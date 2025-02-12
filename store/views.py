@@ -66,7 +66,7 @@ def create_checkout_session(request):
             payment_method_types=['card'],  # Only card payments
             line_items=line_items,
             mode='payment',
-            success_url=YOUR_DOMAIN + '/',  # Corrected URL
+            success_url = YOUR_DOMAIN + reverse('checkout-success'),
             cancel_url=YOUR_DOMAIN + '/',
         )
 
@@ -75,3 +75,6 @@ def create_checkout_session(request):
 
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)  # Return a JSON response on error
+
+def checkout_success(request):
+    return render(request, 'store/success.html')

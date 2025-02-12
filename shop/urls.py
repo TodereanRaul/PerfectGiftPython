@@ -2,7 +2,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from store.views import cart, delete_cart, index, product_detail, add_to_cart, create_checkout_session
+from store.views import cart, delete_cart, index, product_detail, add_to_cart, create_checkout_session, checkout_success
 from accounts.views import signup, login_user
 from accounts.views import signout
 
@@ -15,6 +15,7 @@ urlpatterns = [
     path('signout', signout, name="signout"),
     path('login', login_user, name="login"),
     path('cart', cart, name="cart"),
+    path('store/success', checkout_success, name="checkout-success"),
     path('cart/delete/', delete_cart, name="delete-cart"),
     path('cart/create_checkout_session/', create_checkout_session, name="create_checkout_session"),
     path('product/<str:slug>/', product_detail, name="product"),
