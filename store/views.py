@@ -1,9 +1,15 @@
+from http.client import HTTPS_PORT
+from importlib.metadata import metadata
+from pprint import pprint
+
 import stripe
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 
+from accounts.models import Shopper
 from shop import settings
 from store.models import Product, Cart, Order  # import product
 import json
@@ -70,6 +76,9 @@ def create_checkout_session(request):
             mode='payment',
             success_url = YOUR_DOMAIN + reverse('checkout-success'),
             cancel_url=YOUR_DOMAIN + '/',
+            metadata={
+                "user_email": request.user.email
+            }
         )
 
         # Redirect to Stripe checkout page
@@ -78,31 +87,59 @@ def create_checkout_session(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500)  # Return a JSON response on error
 
+endpoint_secret = 'whsec_517e4430b4ef6cd82c3dd1bc5875745dc3eed84b823491b73760bb05adf8288e'
+
 def checkout_success(request):
     return render(request, 'store/success.html')
 
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     event = None
 
     try:
-        event = stripe.Event.construct_from(
-            json.loads(payload), stripe.api_key
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, endpoint_secret
         )
     except ValueError as e:
-        # Invalid payload
+        print(f"Payload invalide : {str(e)}")
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        print(f"Signature invalide : {str(e)}")
         return HttpResponse(status=400)
 
-    # Handle the event
-    if event.type == 'payment_intent.succeeded':
-        payment_intent = event.data.object  # contains a stripe.PaymentIntent
-        print('PaymentIntent was successful!')
-    elif event.type == 'payment_method.attached':
-        payment_method = event.data.object  # contains a stripe.PaymentMethod
-        print('PaymentMethod was attached to a Customer!')
-    # ... handle other event types
-    else:
-        print('Unhandled event type {}'.format(event.type))
+    # Logging pour vérifier les données reçues
+    print(f"Événement reçu : {event.type}")
+    pprint(event)
 
+    # Gérer l'événement checkout.session.completed
+    if event.type == 'checkout.session.completed':
+        data = event['data']['object']
+        return complete_order(data)
+
+    return HttpResponse(status=200)
+
+
+def complete_order(data):
+    try:
+        # Récupérer l'email depuis les métadonnées
+        user_email = data['metadata'].get('user_email')
+        if not user_email:
+            raise KeyError("Email manquant dans les métadonnées")
+    except KeyError as e:
+        print(f"Erreur: {str(e)}")
+        return HttpResponse("Invalid user email", status=404)
+
+    # Récupérer l'utilisateur associé à l'email
+    user = get_object_or_404(Shopper, email=user_email)
+
+    # Vérifier et compléter la commande
+    if not hasattr(user, 'cart'):
+        print("Erreur: Aucun panier associé à cet utilisateur")
+        return HttpResponse("Cart not found for user", status=404)
+
+    user.cart.ordered = True
+    user.cart.ordered_date = timezone.now()
+    user.cart.save()
     return HttpResponse(status=200)

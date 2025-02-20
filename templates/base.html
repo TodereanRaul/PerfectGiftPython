@@ -4,21 +4,63 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Perfect Gift</title>
     {% tailwind_css %}
   </head>
-  <body>
-    <a href="{% url 'index' %}"><h1>La boutique de cadeaux</h1></a>
+  <body class="bg-gray-100 text-gray-800 font-sans">
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 shadow-md">
+      <div class="container mx-auto flex items-center justify-between px-4">
+        <a href="{% url 'index' %}" class="text-2xl font-bold hover:text-gray-200">
+          La Boutique de Cadeaux
+        </a>
+        <nav>
+          {% if user.is_authenticated %}
+          <span class="mr-4">Bienvenue, {{ user.username }}</span>
+          <a
+            href="{% url 'signout' %}"
+            class="text-sm text-white hover:text-gray-300 underline"
+            >Se déconnecter</a
+          >
+          {% if user.cart and not user.cart.ordered %}
+          <a
+            href="{% url 'cart' %}"
+            class="ml-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-lg shadow hover:bg-yellow-300"
+          >
+            Mon Panier ({{ user.cart.orders.count }})
+          </a>
+          {% endif %}
+          {% else %}
+          <a
+            href="{% url 'signup' %}"
+            class="text-sm text-white hover:text-gray-300 underline mr-4"
+            >S'inscrire</a
+          >
+          <a
+            href="{% url 'login' %}"
+            class="text-sm text-white hover:text-gray-300 underline"
+            >Se connecter</a
+          >
+          {% endif %}
+        </nav>
+      </div>
+    </header>
 
-    {% if user.is_authenticated %} {{ user.username }}
-    <a href="{% url 'signout' %}">Se deconnecter</a>
-    {% if user.cart %}
-    <p>
-      <a href="{% url 'cart' %}">Mon panier ({{ user.cart.orders.count }})</a>
-    </p>
-    {% endif %} {% else %}
-    <a href="{% url 'signup' %}">S'inscrire</a>
-    <a href="{% url 'login' %}">Se connecter</a>
-    {% endif %} {% block content %} {% endblock %}
+    <!-- Main Content -->
+    <main class="container mx-auto mt-8 px-4">
+      {% block content %}
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <p class="text-center text-gray-600">Contenu de la page ici</p>
+      </div>
+      {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-8 py-4">
+      <div class="container mx-auto text-center text-sm">
+        &copy; 2025 La Boutique de Cadeaux. Tous droits réservés.
+      </div>
+    </footer>
   </body>
 </html>
