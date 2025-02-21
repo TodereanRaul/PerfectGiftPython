@@ -58,8 +58,10 @@ def delete_cart(request):
 
 
 def cart(request):
-    cart = get_object_or_404(Cart, user=request.user)
-    return render(request, 'store/cart.html', context={"cart": cart, "orders": cart.orders.all()})
+    cart = get_object_or_404(Cart, user=request.user, ordered=False)
+    orders = cart.orders.filter(ordered=False)  # Seules les commandes non terminées
+    return render(request, 'store/cart.html', context={"cart": cart, "orders": orders})
+
 
 
 def create_checkout_session(request):
@@ -123,7 +125,6 @@ def stripe_webhook(request):
 
 def complete_order(data):
     try:
-        # Récupérer l'email depuis les métadonnées
         user_email = data['metadata'].get('user_email')
         if not user_email:
             raise KeyError("Email manquant dans les métadonnées")
@@ -131,15 +132,22 @@ def complete_order(data):
         print(f"Erreur: {str(e)}")
         return HttpResponse("Invalid user email", status=404)
 
-    # Récupérer l'utilisateur associé à l'email
     user = get_object_or_404(Shopper, email=user_email)
 
-    # Vérifier et compléter la commande
     if not hasattr(user, 'cart'):
         print("Erreur: Aucun panier associé à cet utilisateur")
         return HttpResponse("Cart not found for user", status=404)
 
-    user.cart.ordered = True
-    user.cart.ordered_date = timezone.now()
-    user.cart.save()
+    # Marquer le panier comme commandé
+    cart = user.cart
+    cart.ordered = True
+    cart.ordered_date = timezone.now()
+    cart.save()
+
+    # Marquer toutes les commandes associées comme commandées
+    for order in cart.orders.all():
+        order.ordered = True
+        order.save()
+
     return HttpResponse(status=200)
+
