@@ -1,15 +1,15 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.contrib.auth.models import BaseUserManager
 
 class CustomUserManager(BaseUserManager):
+    # Custom manager for creating users and superusers without a username field
     def create_user(self, email, password, **kwargs):
         if not email:
             raise ValueError("Email is required")
         
         email = self.normalize_email(email)
         user = self.model(email=email, **kwargs)
-        user.set_password(password) #encrypt password
+        user.set_password(password)  # Encrypt password
         user.save()
         return user
 
@@ -21,12 +21,22 @@ class CustomUserManager(BaseUserManager):
         user.save()
         return user
 
-
 class Shopper(AbstractUser):
+    # Custom user model without a username field, using email instead
     username = None
-    email = models.EmailField(max_length=240,unique=True)
+    email = models.EmailField(max_length=240, unique=True)
 
     USERNAME_FIELD = 'email'
-    # mandatrory fields for login
+    # Mandatory fields for login
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
+
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(Shopper, on_delete=models.CASCADE) #user can have multiple shipping addresses
+    name = models.CharField(max_length=240)
+    address_1 = models.CharField(max_length=1024, help_text="Nom de rue et numéro")
+    address_2 = models.CharField(max_length=1024, help_text="Bâtiment, étage, appartement, etc.", blank=True)
+    city = models.CharField(max_length=240)
+    postal_code = models.CharField(max_length=12)
+
+    

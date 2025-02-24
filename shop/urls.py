@@ -4,14 +4,13 @@ from django.urls import path, include
 
 from store.views import cart, delete_cart, index, product_detail, add_to_cart, create_checkout_session, \
     checkout_success, stripe_webhook
-from accounts.views import signup, login_user
-from accounts.views import signout
-
+from accounts.views import signup, login_user, signout, profile
 from shop import settings
 
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
+    path('profile/', profile, name="profile"),
     path('signup/', signup, name="signup"),
     path('signout', signout, name="signout"),
     path('login', login_user, name="login"),
