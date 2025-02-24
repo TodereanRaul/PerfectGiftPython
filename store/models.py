@@ -64,9 +64,24 @@ class Cart(models.Model):
         return self.user.username
 
     def delete(self, *args, **kwargs):
+        # Mark all orders in the cart as ordered and set the ordered date
         for order in self.orders.all():
             order.ordered = True
             order.ordered_date = timezone.now()
             order.save()
+        # Clear the orders from the cart
         self.orders.clear()
+        # Call the superclass delete method to delete the cart
         super().delete(*args, **kwargs)
+
+    def process_payment(self):
+        # Mark all orders in the cart as ordered
+        for order in self.orders.all():
+            order.ordered = True
+            order.save()
+        # Mark the cart as ordered and set the ordered date
+        self.ordered = True
+        self.ordered_date = timezone.now()
+        self.save()
+        # Delete the cart
+        self.delete()
