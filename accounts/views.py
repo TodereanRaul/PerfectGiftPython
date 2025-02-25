@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.forms import model_to_dict
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from accounts.forms import UserForm
 
@@ -48,8 +49,9 @@ def profile(request):
             user.last_name = request.POST.get("last_name")
             user.email = request.POST.get("email")
             user.save()
+            messages.add_message(request, messages.SUCCESS, "Profil mis à jour avec succès")
         else:
-            pass
+            messages.add_message(request, messages.ERROR, "Le mot de passe est incorrect")
 
         return redirect('profile')
 
