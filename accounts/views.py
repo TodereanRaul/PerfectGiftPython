@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model, login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.forms import model_to_dict
 from django.shortcuts import render, redirect
 
 from accounts.forms import UserForm
@@ -39,5 +40,18 @@ def signout(request):
 
 @login_required # Decorator to protect the view - user must be connected to access it
 def profile(request):
-    form = UserForm()
+    if request.method == "POST":
+        is_valid = authenticate(email=request.POST.get("email"), password=request.POST.get("password")) # 
+        if is_valid:
+            user = request.user
+            user.first_name = request.POST.get("first_name")
+            user.last_name = request.POST.get("last_name")
+            user.email = request.POST.get("email")
+            user.save()
+        else:
+            pass
+
+        return redirect('profile')
+
+    form = UserForm(initial=model_to_dict(request.user, exclude=["password"])) # Form with user's infos
     return render(request, 'accounts/profile.html', context={"form": form})
