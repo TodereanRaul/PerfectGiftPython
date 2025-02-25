@@ -12,12 +12,15 @@
     <!-- Header -->
     <header class="bg-blue-600 text-white py-4 shadow-md">
       <div class="container mx-auto flex items-center justify-between px-4">
-        <a href="{% url 'index' %}" class="text-2xl font-bold hover:text-gray-200">
+        <a
+          href="{% url 'index' %}"
+          class="text-2xl font-bold hover:text-gray-200"
+        >
           La Boutique de Cadeaux
         </a>
         <nav>
           {% if user.is_authenticated %}
-          <span class="mr-4">Bienvenue, {{ user.username }}</span>
+          <span class="mr-4">Bienvenue, {{ user.email }}</span>
           <a
             href="{% url 'signout' %}"
             class="text-sm text-white hover:text-gray-300 underline"
@@ -30,8 +33,7 @@
           >
             Mon Panier ({{ user.cart.orders.count }})
           </a>
-          {% endif %}
-          {% else %}
+          {% endif %} {% else %}
           <a
             href="{% url 'signup' %}"
             class="text-sm text-white hover:text-gray-300 underline mr-4"

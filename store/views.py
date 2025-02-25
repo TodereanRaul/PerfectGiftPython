@@ -67,12 +67,16 @@ def cart(request):
 def create_checkout_session(request):
     cart = request.user.cart
     line_items = [{"price": order.product.stripe_id,
-                   "quantity": order.quantity} for order in cart.orders.all()]
+                   "quantity": order.quantity} for order in cart.orders.all() if order.product.stripe_id]
 
     try:
         # Create a checkout session
         checkout_session = stripe.checkout.Session.create(
             locale="fr",
+            shipping_address_collection={
+                'allowed_countries': ['BE']
+            },
+            customer_email=request.user.email,
             payment_method_types=['card'],  # Only card payments
             line_items=line_items,
             mode='payment',
@@ -112,42 +116,29 @@ def stripe_webhook(request):
         return HttpResponse(status=400)
 
     # Logging pour vérifier les données reçues
-    print(f"Événement reçu : {event.type}")
-    pprint(event)
+    # print(f"Événement reçu : {event.type}")
+    # pprint(event)
 
     # Gérer l'événement checkout.session.completed
-    if event.type == 'checkout.session.completed':
+    if event['type'] == 'checkout.session.completed':
         data = event['data']['object']
-        return complete_order(data)
+        try:
+            user = get_object_or_404(Shopper, email=data['customer_details']['email'])
+        except KeyError as e:
+            return HttpResponse("Invalid user email", status=404)
+        
+        complete_order(data=data, user=user)
+        save_shipping_address(data=data, user=user)
+        return HttpResponse(status=200)
 
     return HttpResponse(status=200)
 
 
-def complete_order(data):
-    try:
-        user_email = data['metadata'].get('user_email')
-        if not user_email:
-            raise KeyError("Email manquant dans les métadonnées")
-    except KeyError as e:
-        print(f"Erreur: {str(e)}")
-        return HttpResponse("Invalid user email", status=404)
-
-    user = get_object_or_404(Shopper, email=user_email)
-
-    if not hasattr(user, 'cart'):
-        print("Erreur: Aucun panier associé à cet utilisateur")
-        return HttpResponse("Cart not found for user", status=404)
-
-    # Marquer le panier comme commandé
-    cart = user.cart
-    cart.ordered = True
-    cart.ordered_date = timezone.now()
-    cart.save()
-
-    # Marquer toutes les commandes associées comme commandées
-    for order in cart.orders.all():
-        order.ordered = True
-        order.save()
-
+def complete_order(data, user):
+    user.stripe_id = data['customer']
+    user.cart.delete()
+    user.save()
     return HttpResponse(status=200)
 
+def save_shipping_address(data, user):
+    pass
