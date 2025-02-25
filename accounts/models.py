@@ -25,9 +25,10 @@ class Shopper(AbstractUser):
     # Custom user model without a username field, using email instead
     username = None
     email = models.EmailField(max_length=240, unique=True)
+    stripe_id = models.CharField(max_length=240, blank=True)
 
-    USERNAME_FIELD = 'email'
     # Mandatory fields for login
+    USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
 
