@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+from iso3166 import countries
 
 class CustomUserManager(BaseUserManager):
     # Custom manager for creating users and superusers without a username field
@@ -36,8 +37,10 @@ class ShippingAddress(models.Model):
     user = models.ForeignKey(Shopper, on_delete=models.CASCADE) #user can have multiple shipping addresses
     name = models.CharField(max_length=240)
     address_1 = models.CharField(max_length=1024, help_text="Nom de rue et numéro")
-    address_2 = models.CharField(max_length=1024, help_text="Bâtiment, étage, appartement, etc.", blank=True)
+    address_2 = models.CharField(max_length=1024, help_text="Bâtiment, étage, appartement, etc.", blank=True, null=True)
     city = models.CharField(max_length=240)
     postal_code = models.CharField(max_length=12)
+    # liste de tuple avec en 1er deux lettres (bd) et après le pays
+    country = models.CharField(max_length=2, choices=[(c.alpha2.lower(), c.name) for c in countries])
 
     
