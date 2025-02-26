@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 import stripe.error
 
-from accounts.models import Shopper
+from accounts.models import ShippingAddress, Shopper
 from shop import settings
 from store.models import Product, Cart, Order  # import product
 import json
@@ -138,7 +138,7 @@ def stripe_webhook(request):
     if event['type'] == 'checkout.session.completed':
         # dans event on a un objet qui permet de récup mail user produits acheté etc ds data object
         data = event['data']['object']
-        pprint(data)
+
         try:
             user = get_object_or_404(Shopper, email=data['customer_details']['email'])
         except KeyError as e:
@@ -158,4 +158,38 @@ def complete_order(data, user):
     return HttpResponse(status=200)
 
 def save_shipping_address(data, user):
-    pass
+    """
+    "collected_information": {
+    "shipping_details": {
+      "address": {
+        "city": "Saint-Josse-ten-Noode",
+        "country": "BE",
+        "line1": "Rue de Brabant",
+        "line2": null,
+        "postal_code": "1234",
+        "state": null
+      },
+      "name": "maison"
+    }
+    """
+
+    try:
+        address = data["shipping_details"]["address"]
+        name = data["shipping_details"]["name"]
+        city = address["city"]
+        country = address["country"]
+        line1 = address["line1"]
+        line2 = address["line2"]
+        postal_code = address["postal_code"]
+    except KeyError:
+        return HttpResponse(status=400)
+
+    ShippingAddress.objects.get_or_create(user=user,
+                                          name=name,
+                                          city=city,
+                                          country=country.lower(),
+                                          address_1=line1,
+                                          # si line2 est none je mets plutot un str vide
+                                          address_2=line2 or "",
+                                          zip_code=postal_code)
+    return HttpResponse(status=200)
