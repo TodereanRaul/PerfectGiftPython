@@ -8,6 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
+import stripe.error
 
 from accounts.models import Shopper
 from shop import settings
@@ -20,8 +21,9 @@ stripe.api_key = settings.STRIPE_API_KEY
 
 def index(request):
     products = Product.objects.all()
-
     return render(request, 'store/index.html', context={"products": products})
+
+
 
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
@@ -32,6 +34,8 @@ def product_detail(request, slug):
             product.save()
             return redirect("product", slug=product.slug)  # Rafraîchit la page
     return render(request, 'store/product-detail.html', context={"product": product})
+
+
 
 def add_to_cart(request, slug):
     user = request.user # get user
@@ -58,16 +62,31 @@ def delete_cart(request):
 
 
 def cart(request):
-    cart = get_object_or_404(Cart, user=request.user, ordered=False)
-    orders = cart.orders.filter(ordered=False)  # Seules les commandes non terminées
+    cart = get_object_or_404(Cart, user=request.user)
+    orders = Order.objects.filter(user=request.user, ordered=False)
     return render(request, 'store/cart.html', context={"cart": cart, "orders": orders})
 
 
 
 def create_checkout_session(request):
-    cart = request.user.cart
+    user  = request.user
+
+    # Vérifier si l'utilisateur a déjà un stripe_id
+    if not user.stripe_id:
+        try:
+            customer = stripe.Customer.create(email=user.email,
+                                              name=user.username if user.username else user.email)
+            user.stripe_id = customer['id']
+            user.save()
+        except stripe.error.StripeError as e:
+            # Gérer l'erreur proprement (ex: log, message à l'admin, etc.)
+            print(f"Erreur Stripe : {e}")
+            return JsonResponse({"error": str(e)}, status=500)
+
+    cart = user.cart
+
     line_items = [{"price": order.product.stripe_id,
-                   "quantity": order.quantity} for order in cart.orders.all() if order.product.stripe_id]
+                   "quantity": order.quantity} for order in cart.orders.all()]
 
     try:
         # Create a checkout session
@@ -76,8 +95,8 @@ def create_checkout_session(request):
             shipping_address_collection={
                 'allowed_countries': ['BE']
             },
-            customer_email=request.user.email,
-            payment_method_types=['card'],  # Only card payments
+            customer=user.stripe_id,
+            payment_method_types=['card'],  
             line_items=line_items,
             mode='payment',
             success_url = YOUR_DOMAIN + reverse('checkout-success'),
@@ -115,13 +134,11 @@ def stripe_webhook(request):
         print(f"Signature invalide : {str(e)}")
         return HttpResponse(status=400)
 
-    # Logging pour vérifier les données reçues
-    # print(f"Événement reçu : {event.type}")
-    # pprint(event)
-
     # Gérer l'événement checkout.session.completed
     if event['type'] == 'checkout.session.completed':
+        # dans event on a un objet qui permet de récup mail user produits acheté etc ds data object
         data = event['data']['object']
+        pprint(data)
         try:
             user = get_object_or_404(Shopper, email=data['customer_details']['email'])
         except KeyError as e:
@@ -136,7 +153,7 @@ def stripe_webhook(request):
 
 def complete_order(data, user):
     user.stripe_id = data['customer']
-    user.cart.delete()
+    user.cart.order_ok()
     user.save()
     return HttpResponse(status=200)
 
