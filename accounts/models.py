@@ -34,7 +34,7 @@ class Shopper(AbstractUser):
     objects = CustomUserManager()
 
 class ShippingAddress(models.Model):
-    user = models.ForeignKey(Shopper, on_delete=models.CASCADE) #user can have multiple shipping addresses
+    user = models.ForeignKey(Shopper, on_delete=models.CASCADE, related_name="addresses") #user can have multiple shipping addresses
     name = models.CharField(max_length=240)
     address_1 = models.CharField(max_length=1024, help_text="Nom de rue et numéro")
     address_2 = models.CharField(max_length=1024, help_text="Bâtiment, étage, appartement, etc.", blank=True, null=True)
