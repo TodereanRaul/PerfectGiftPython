@@ -1,5 +1,4 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class="container mx-auto px-4 py-8">
   <!-- Product Title -->
@@ -8,72 +7,87 @@
 
   <!-- Product Thumbnail -->
   {% if product.thumbnail and product.thumbnail.url %}
-    <img src="{{ product.thumbnail.url }}" alt="{{ product.name }}" class="w-64 rounded-lg shadow-md mb-6" />
+  <img
+    src="{{ product.thumbnail.url }}"
+    alt="{{ product.name }}"
+    class="w-64 rounded-lg shadow-md mb-6"
+  />
   {% else %}
-    <p class="text-gray-500 italic mb-6">No image available</p>
+  <p class="text-gray-500 italic mb-6">No image available</p>
   {% endif %}
 
   <!-- Product Description -->
-  <p class="text-gray-700 leading-relaxed mb-6">{{ product.description|safe }}</p>
+  <p class="text-gray-700 leading-relaxed mb-6">
+    {{ product.description|safe }}
+  </p>
 
-  <!-- Add to Cart Button -->
+  <!-- Add to Cart Form -->
   {% if user.is_authenticated %}
-    <a href="{% url 'add-to-cart' product.slug %}"
-       class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow">
+  <form
+    method="POST"
+    action="{% url 'add-to-cart' product.slug %}"
+    class="space-y-4"
+  >
+    {% csrf_token %}
+    <textarea
+      id="comment"
+      name="comment"
+      rows="4"
+      placeholder="Écrivez votre commentaire ici..."
+      class="w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+    ></textarea>
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
+    >
       Ajouter au panier
-    </a>
+    </button>
+  </form>
   {% endif %}
 
   <!-- Variants -->
   {% if product.variants.exists %}
-    <h3 class="text-xl font-semibold mt-8 mb-4">Variantes disponibles :</h3>
-    <ul class="space-y-2">
-      {% for variant in product.variants.all %}
-        <li>
-          <a href="{{ variant.get_absolute_url }}"
-             class="text-blue-500 hover:underline">
-            {{ variant.name }}
-          </a>
-          - €{{ variant.price }}
-        </li>
-      {% endfor %}
-    </ul>
+  <h3 class="text-xl font-semibold mt-8 mb-4">Variantes disponibles :</h3>
+  <ul class="space-y-2">
+    {% for variant in product.variants.all %}
+    <li>
+      <a
+        href="{{ variant.get_absolute_url }}"
+        class="text-blue-500 hover:underline"
+      >
+        {{ variant.name }}
+      </a>
+      - €{{ variant.price }}
+    </li>
+    {% endfor %}
+  </ul>
   {% else %}
-    <p class="text-gray-500 mt-4">Aucune variante disponible.</p>
+  <p class="text-gray-500 mt-4">Aucune variante disponible.</p>
   {% endif %}
 
   <!-- Additional Images -->
   {% if product.images.exists %}
-    <h3 class="text-xl font-semibold mt-8 mb-4">Autres images :</h3>
-    <div class="flex flex-wrap gap-4">
-      {% for image in product.images.all %}
-        <div>
-          <img src="{{ image.image.url }}" alt="{{ product.name }}" class="w-36 rounded-lg shadow" />
-        </div>
-      {% endfor %}
+  <h3 class="text-xl font-semibold mt-8 mb-4">Autres images :</h3>
+  <div class="flex flex-wrap gap-4">
+    {% for image in product.images.all %}
+    <div>
+      <img
+        src="{{ image.image.url }}"
+        alt="{{ product.name }}"
+        class="w-36 rounded-lg shadow"
+      />
     </div>
+    {% endfor %}
+  </div>
   {% else %}
-    <p class="text-gray-500 mt-4">Aucune image supplémentaire disponible.</p>
+  <p class="text-gray-500 mt-4">Aucune image supplémentaire disponible.</p>
   {% endif %}
 
   <!-- User Comment -->
   {% if product.user_comment %}
-    <h3 class="text-xl font-semibold mt-8 mb-4">Commentaire :</h3>
-    <p class="text-gray-700">{{ product.user_comment }}</p>
+  <h3 class="text-xl font-semibold mt-8 mb-4">Commentaire :</h3>
+  <p class="text-gray-700">{{ product.user_comment }}</p>
   {% endif %}
-
-  <!-- Comment Form -->
-  <h3 class="text-xl font-semibold mt-8 mb-4">Ajouter un commentaire</h3>
-  <form method="post" class="space-y-4">
-    {% csrf_token %}
-    <textarea id="comment" name="comment" rows="4"
-              placeholder="Écrivez votre commentaire ici..."
-              class="w-full border-gray-300 rounded-lg shadow p-3"></textarea>
-    <button type="submit"
-            class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg shadow">
-      Envoyer
-    </button>
-  </form>
 </div>
 
 {% endblock %}

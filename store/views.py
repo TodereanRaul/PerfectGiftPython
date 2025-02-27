@@ -191,5 +191,5 @@ def save_shipping_address(data, user):
                                           address_1=line1,
                                           # si line2 est none je mets plutot un str vide
                                           address_2=line2 or "",
-                                          zip_code=postal_code)
+                                          postal_code=postal_code)
     return HttpResponse(status=200)

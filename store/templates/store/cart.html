@@ -1,48 +1,54 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="container mx-auto py-8">
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
     {% for order in orders %}
-      <div class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300">
-        <h2 class="text-xl font-semibold mb-4 text-gray-800">{{ order.product.name }}</h2>
+    <div
+      class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300"
+    >
+      <h2 class="text-xl font-semibold mb-4 text-gray-800">
+        {{ order.product.name }}
+      </h2>
 
-        {% if order.product.thumbnail and order.product.thumbnail.url %}
-          <img
-            src="{{ order.product.thumbnail.url }}"
-            alt="{{ order.product.name }}"
-            class="w-full h-48 object-cover rounded-md mb-4"
-          >
-        {% else %}
-          <div class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4">
-            <p class="text-gray-500">No image available</p>
-          </div>
-        {% endif %}
-
-        {% if order.product.user_comment %}
-          <p class="text-gray-700 mb-2"><strong>Commentaire :</strong> {{ order.product.user_comment }}</p>
-        {% endif %}
-
-        <p class="text-gray-700 mb-4">{{ order.quantity }} dans le panier</p>
-
-        <div class="flex space-x-4">
-          <a
-            href="{% url 'delete-cart' %}"
-            class="text-center text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md transition duration-300">
-            Supprimer le panier
-          </a>
-
-          <form action="{% url 'create_checkout_session' %}" method="POST">
-            {% csrf_token %}
-            <button
-              type="submit"
-              class="text-center text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md transition duration-300">
-              Procéder au paiement
-            </button>
-          </form>
-        </div>
+      {% if order.product.thumbnail and order.product.thumbnail.url %}
+      <img
+        src="{{ order.product.thumbnail.url }}"
+        alt="{{ order.product.name }}"
+        class="w-full h-48 object-cover rounded-md mb-4"
+      />
+      {% else %}
+      <div
+        class="w-full h-48 bg-gray-200 flex items-center justify-center rounded-md mb-4"
+      >
+        <p class="text-gray-500">No image available</p>
       </div>
+      {% endif %} {% if order.product.user_comment %}
+      <p class="text-gray-700 mb-2">
+        <strong>Commentaire :</strong> {{ order.product.user_comment }}
+      </p>
+      {% endif %}
+
+      <p class="text-gray-700 mb-4">{{ order.quantity }} dans le panier</p>
+    </div>
     {% endfor %}
+  </div>
+
+  <div class="mt-8 flex justify-end space-x-4">
+    <a
+      href="{% url 'delete-cart' %}"
+      class="text-center text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md transition duration-300"
+    >
+      Supprimer le panier
+    </a>
+
+    <form action="{% url 'create_checkout_session' %}" method="POST">
+      {% csrf_token %}
+      <button
+        type="submit"
+        class="text-center text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md transition duration-300"
+      >
+        Procéder au paiement
+      </button>
+    </form>
   </div>
 </div>
 {% endblock %}

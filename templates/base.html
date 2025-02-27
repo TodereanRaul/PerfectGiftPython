@@ -22,6 +22,11 @@
           {% if user.is_authenticated %}
           <span class="mr-4">Bienvenue, {{ user.email }}</span>
           <a
+            href="{% url 'profile' %}"
+            class="text-sm text-white hover:text-gray-300 underline mr-4"
+            >Mon Profil</a
+          >
+          <a
             href="{% url 'signout' %}"
             class="text-sm text-white hover:text-gray-300 underline"
             >Se déconnecter</a

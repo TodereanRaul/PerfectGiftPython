@@ -86,4 +86,3 @@ class Cart(models.Model):
             order.delete()
         super().delete(*args, **kwargs)
   
-
