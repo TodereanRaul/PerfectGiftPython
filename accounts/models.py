@@ -33,6 +33,14 @@ class Shopper(AbstractUser):
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
 
+ADDRESS_FORMAT = """
+{name}
+{address_1}
+{address_2}
+{city}, {postal_code}
+{country}
+"""
+
 class ShippingAddress(models.Model):
     user = models.ForeignKey(Shopper, on_delete=models.CASCADE, related_name="addresses") #user can have multiple shipping addresses
     name = models.CharField(max_length=240)
@@ -43,4 +51,12 @@ class ShippingAddress(models.Model):
     # liste de tuple avec en 1er deux lettres (bd) et après le pays
     country = models.CharField(max_length=2, choices=[(c.alpha2.lower(), c.name) for c in countries])
 
+    def __str__(self):
+        data = self.__dict__.copy()
+        data.update(country=self.get_country_display().upper()) # get the country name from the country code
+        """
+        utiliser le unpacking pour afficher les infos de l'adresse dans le format défini
+        strip("\n") pour enlever les retours à la ligne en trop
+        """
+        return ADDRESS_FORMAT.format(**data).strip("\n")
     
