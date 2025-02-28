@@ -36,7 +36,6 @@ class Shopper(AbstractUser):
 ADDRESS_FORMAT = """
 {name}
 {address_1}
-{address_2}
 {city}, {postal_code}
 {country}
 """
@@ -45,7 +44,6 @@ class ShippingAddress(models.Model):
     user = models.ForeignKey(Shopper, on_delete=models.CASCADE, related_name="addresses") #user can have multiple shipping addresses
     name = models.CharField(max_length=240)
     address_1 = models.CharField(max_length=1024, help_text="Nom de rue et numéro")
-    address_2 = models.CharField(max_length=1024, help_text="Bâtiment, étage, appartement, etc.", blank=True, null=True)
     city = models.CharField(max_length=240)
     postal_code = models.CharField(max_length=12)
     # liste de tuple avec en 1er deux lettres (bd) et après le pays
