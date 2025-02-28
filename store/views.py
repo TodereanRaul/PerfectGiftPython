@@ -2,6 +2,7 @@ from http.client import HTTPS_PORT
 from importlib.metadata import metadata
 from pprint import pprint
 
+from django.forms import modelformset_factory
 import stripe
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
@@ -12,8 +13,8 @@ import stripe.error
 
 from accounts.models import ShippingAddress, Shopper
 from shop import settings
+from store.forms import OrderForm
 from store.models import Product, Cart, Order  # import product
-import json
 
 YOUR_DOMAIN = 'http://localhost:8000'
 
@@ -62,16 +63,27 @@ def delete_cart(request):
 
 
 def cart(request):
-    cart = get_object_or_404(Cart, user=request.user)
-    orders = Order.objects.filter(user=request.user, ordered=False)
-    return render(request, 'store/cart.html', context={"cart": cart, "orders": orders})
+    orderes = Order.objects.filter(user=request.user, ordered=False) # get orders for the user
+    if orderes.count() == 0:
+        return redirect("index")
+    OrderFormSet = modelformset_factory(Order, form=OrderForm, extra=0) # forms for the orders - extra=0 to not add new forms - form=OrderForm to use the form we created
+    formset = OrderFormSet(queryset=orderes) # queryset to get the orders
+    
+    # if the form is valid, save the form
+    if request.method == "POST":
+        formset = OrderFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect('cart')
+
+    return render(request, 'store/cart.html', context={"forms": formset})
 
 
 
 def create_checkout_session(request):
     user  = request.user
 
-    # Vérifier si l'utilisateur a déjà un stripe_id
+    # check if user has a stripe id, if not create one
     if not user.stripe_id:
         try:
             customer = stripe.Customer.create(email=user.email,
@@ -79,7 +91,7 @@ def create_checkout_session(request):
             user.stripe_id = customer['id']
             user.save()
         except stripe.error.StripeError as e:
-            # Gérer l'erreur proprement (ex: log, message à l'admin, etc.)
+            # Display a very generic error to the user
             print(f"Erreur Stripe : {e}")
             return JsonResponse({"error": str(e)}, status=500)
 
@@ -106,11 +118,11 @@ def create_checkout_session(request):
             }
         )
 
-        # Redirect to Stripe checkout page
+        
         return redirect(checkout_session.url, code=303)
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)  # Return a JSON response on error
+        return JsonResponse({"error": str(e)}, status=500) 
 
 endpoint_secret = 'whsec_517e4430b4ef6cd82c3dd1bc5875745dc3eed84b823491b73760bb05adf8288e'
 
@@ -134,9 +146,9 @@ def stripe_webhook(request):
         print(f"Signature invalide : {str(e)}")
         return HttpResponse(status=400)
 
-    # Gérer l'événement checkout.session.completed
+    # Handle the event
     if event['type'] == 'checkout.session.completed':
-        # dans event on a un objet qui permet de récup mail user produits acheté etc ds data object
+        # Object is a checkout.session
         data = event['data']['object']
 
         try:
@@ -189,7 +201,6 @@ def save_shipping_address(data, user):
                                           city=city,
                                           country=country.lower(),
                                           address_1=line1,
-                                          # si line2 est none je mets plutot un str vide
-                                          address_2=line2 or "",
+                                          address_2=line2 or " ",
                                           postal_code=postal_code)
     return HttpResponse(status=200)
