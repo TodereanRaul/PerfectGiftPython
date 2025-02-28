@@ -53,7 +53,7 @@ def profile(request):
         else:
             messages.add_message(request, messages.ERROR, "Le mot de passe est incorrect")
 
-        return redirect('profile')
+        return redirect('accounts:profile')
 
     form = UserForm(initial=model_to_dict(request.user, exclude=["password"])) # Form with user's infos as a dictionary
     
