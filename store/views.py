@@ -33,7 +33,7 @@ def product_detail(request, slug):
         if comment:
             product.user_comment = comment  # Sauvegarde du commentaire
             product.save()
-            return redirect("product", slug=product.slug)  # Rafraîchit la page
+            return redirect("store:product", slug=product.slug)  # Rafraîchit la page
     return render(request, 'store/product-detail.html', context={"product": product})
 
 
@@ -51,7 +51,7 @@ def add_to_cart(request, slug):
         order.quantity += 1
         order.save()
 
-    return redirect(reverse("product", kwargs={"slug": slug}))
+    return redirect(reverse("store:product", kwargs={"slug": slug}))
 
 def delete_cart(request):
     cart = getattr(request.user, "cart", None)  
@@ -74,7 +74,7 @@ def cart(request):
         formset = OrderFormSet(request.POST)
         if formset.is_valid():
             formset.save()
-            return redirect('cart')
+            return redirect('store:cart')
 
     return render(request, 'store/cart.html', context={"forms": formset})
 
@@ -111,7 +111,7 @@ def create_checkout_session(request):
             payment_method_types=['card'],  
             line_items=line_items,
             mode='payment',
-            success_url = YOUR_DOMAIN + reverse('checkout-success'),
+            success_url = YOUR_DOMAIN + reverse('store:checkout-success'),
             cancel_url=YOUR_DOMAIN + '/',
             metadata={
                 "user_email": request.user.email

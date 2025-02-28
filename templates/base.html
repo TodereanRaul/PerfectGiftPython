@@ -22,30 +22,30 @@
           {% if user.is_authenticated %}
           <span class="mr-4">Bienvenue, {{ user.email }}</span>
           <a
-            href="{% url 'profile' %}"
+            href="{% url 'accounts:profile' %}"
             class="text-sm text-white hover:text-gray-300 underline mr-4"
             >Mon Profil</a
           >
           <a
-            href="{% url 'signout' %}"
+            href="{% url 'accounts:signout' %}"
             class="text-sm text-white hover:text-gray-300 underline"
             >Se déconnecter</a
           >
           {% if user.cart and not user.cart.ordered %}
           <a
-            href="{% url 'cart' %}"
+            href="{% url 'store:cart' %}"
             class="ml-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-lg shadow hover:bg-yellow-300"
           >
             Mon Panier ({{ user.cart.orders.count }})
           </a>
           {% endif %} {% else %}
           <a
-            href="{% url 'signup' %}"
+            href="{% url 'accounts:signup' %}"
             class="text-sm text-white hover:text-gray-300 underline mr-4"
             >S'inscrire</a
           >
           <a
-            href="{% url 'login' %}"
+            href="{% url 'accounts:login' %}"
             class="text-sm text-white hover:text-gray-300 underline"
             >Se connecter</a
           >
