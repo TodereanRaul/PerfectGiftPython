@@ -57,7 +57,7 @@ def profile(request):
 
     form = UserForm(initial=model_to_dict(request.user, exclude=["password"])) # Form with user's infos as a dictionary
     
-    addresses = request.user.addresses.all() # Get all shipping adresses for the user
+    addresses = [str(address) for address in request.user.addresses.all()] # Get all shipping addresses for the user and format them
     
     return render(request, 'accounts/profile.html', context={"form": form,
                                                              "addresses": addresses})
