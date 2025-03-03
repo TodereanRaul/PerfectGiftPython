@@ -1,66 +1,190 @@
 {% load static tailwind_tags %}
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="cupcake">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Perfect Gift</title>
     {% tailwind_css %}
   </head>
-  <body class="bg-gray-100 text-gray-800 font-sans">
+  <body class="">
     <!-- Header -->
-    <header class="bg-blue-600 text-white py-4 shadow-md">
-      <div class="container mx-auto flex items-center justify-between px-4">
-        <a
-          href="{% url 'index' %}"
-          class="text-2xl font-bold hover:text-gray-200"
-        >
-          La Boutique de Cadeaux
+    <header class="navbar mx-auto max-w-screen-xl px-4">
+      <div class="navbar-start">
+        <div class="dropdown">
+          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </div>
+          {% comment %} dropdown menu {% endcomment %}
+          <ul
+            tabindex="1"
+            class="menu menu-sm dropdown-content rounded-box z-30 mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <a
+                href="{% url 'accounts:profile' %}"
+                class="text-base text-primary nav-link"
+                >A propos</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'accounts:profile' %}"
+                class="text-base text-primary nav-link"
+                >Contact</a
+              >
+              {% if user.is_authenticated %}
+            </li>
+
+            <li>
+              <a
+                href="{% url 'accounts:profile' %}"
+                class="text-base text-primary nav-link"
+                >Mon Profil</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'accounts:signout' %}"
+                class="text-base text-primary nav-link"
+                >Se déconnecter</a
+              >
+            </li>
+
+            {% else %}
+            <li>
+              <a
+                href="{% url 'accounts:signup' %}"
+                class="text-base text-primary nav-link"
+                >S'inscrire</a
+              >
+            </li>
+            <li>
+              <a
+                href="{% url 'accounts:login' %}"
+                class="text-base text-primary nav-link"
+                >Se connecter</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+          {% comment %} end dropdown menu {% endcomment %}
+        </div>
+        <a href="{% url 'index' %}">
+          <img
+            src="{% static 'images/logo-transparent.png' %}"
+            alt="La Boutique de Cadeaux"
+            class="h-24"
+          />
         </a>
-        <nav>
-          {% if user.is_authenticated %}
-          <span class="mr-4">Bienvenue, {{ user.email }}</span>
-          <a
-            href="{% url 'accounts:profile' %}"
-            class="text-sm text-white hover:text-gray-300 underline mr-4"
-            >Mon Profil</a
-          >
-          <a
-            href="{% url 'accounts:signout' %}"
-            class="text-sm text-white hover:text-gray-300 underline"
-            >Se déconnecter</a
-          >
-          {% if user.cart and not user.cart.ordered %}
-          <a
-            href="{% url 'store:cart' %}"
-            class="ml-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-lg shadow hover:bg-yellow-300"
-          >
-            Mon Panier ({{ user.cart.orders.count }})
-          </a>
-          {% endif %} {% else %}
-          <a
-            href="{% url 'accounts:signup' %}"
-            class="text-sm text-white hover:text-gray-300 underline mr-4"
-            >S'inscrire</a
-          >
-          <a
-            href="{% url 'accounts:login' %}"
-            class="text-sm text-white hover:text-gray-300 underline"
-            >Se connecter</a
-          >
+      </div>
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
+          <li>
+            <a href="{% url 'store:product-list' %}" class="text-base"
+              >Nos Cadeaux</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'accounts:profile' %}"
+              class="text-base text-primary nav-link"
+              >A propos</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'accounts:profile' %}"
+              class="text-base text-primary nav-link"
+              >Contact</a
+            >
+            {% if user.is_authenticated %}
+          </li>
+
+          <li>
+            <a
+              href="{% url 'accounts:profile' %}"
+              class="text-base text-primary nav-link"
+              >Mon Profil</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'accounts:signout' %}"
+              class="text-base text-primary nav-link"
+              >Se déconnecter</a
+            >
+          </li>
+
+          {% else %}
+          <li>
+            <a
+              href="{% url 'accounts:signup' %}"
+              class="text-base text-primary nav-link"
+              >S'inscrire</a
+            >
+          </li>
+          <li>
+            <a
+              href="{% url 'accounts:login' %}"
+              class="text-base text-primary nav-link"
+              >Se connecter</a
+            >
+          </li>
           {% endif %}
-        </nav>
+        </ul>
+      </div>
+      <div class="navbar-end">
+        {% if user.is_authenticated %}
+        <div>
+          <span class="mr-4 font-semibold text-green"
+            >Bienvenue, {{ user.email }}</span
+          >
+        </div>
+        <button class="btn btn-ghost btn-circle">
+          <div class="indicator">
+            <a href="{% url 'store:cart' %}">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8M17 13l1.6 8M9 21h6M9 21a2 2 0 11-4 0M15 21a2 2 0 104 0"
+                />
+              </svg>
+              <span class="badge badge-xs badge-primary indicator-item">
+                {{ user.cart.orders.count }}
+              </span>
+            </a>
+          </div>
+        </button>
+        {% endif %}
       </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto mt-8 px-4">
-      {% block content %}
-      <div class="bg-white shadow-md rounded-lg p-6">
-        <p class="text-center text-gray-600">Contenu de la page ici</p>
-      </div>
-      {% endblock %}
+    <main class="mx-auto max-w-screen-xl px-4">
+      {% block content %} {% endblock %}
     </main>
 
     <!-- Footer -->

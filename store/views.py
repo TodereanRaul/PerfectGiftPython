@@ -21,9 +21,11 @@ YOUR_DOMAIN = 'http://localhost:8000'
 stripe.api_key = settings.STRIPE_API_KEY
 
 def index(request):
-    products = Product.objects.all()
-    return render(request, 'store/index.html', context={"products": products})
+    return render(request, 'store/index.html')
 
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'store/product-list.html', context={"products": products})
 
 
 def product_detail(request, slug):
