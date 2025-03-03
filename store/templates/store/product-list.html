@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% block content %}
+<section class="py-8 px-4 mx-auto max-w-screen-xl lg:py-10 mt-5">
+  <div class="flex items-center mb-14">
+    <div class="w-2 h-10 bg-primary mr-4"></div>
+    <div>
+      <h2 class="text-primary text-3xl md:text-4xl font-semibold">
+        Nos Produits
+      </h2>
+    </div>
+  </div>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+  >
+    {% for product in products %}
+    <div
+      class="card card-compact shadow-xl overflow-hidden transform transition-transform hover:-translate-y-1"
+    >
+      <a href="{{ product.get_absolute_url }}" class="block pb-4">
+        <figure class="h-64 w-full bg-gray-100 relative">
+          {% if product.thumbnail %}
+          <img
+            src="{{ product.thumbnail.url }}"
+            alt="{{ product.name }}"
+            class="object-cover h-full w-full rounded"
+          />
+          {% else %}
+          <div
+            class="h-full w-full bg-gray-200 flex items-center justify-center"
+          >
+            <p class="text-gray-500">No image available</p>
+          </div>
+          {% endif %}
+        </figure>
+        <div class="card-body mt-3">
+          <div class="flex justify-between">
+            <h5 class="font-medium text-primary text-p mb-2">
+              {{ product.name }}
+            </h5>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

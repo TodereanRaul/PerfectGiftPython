@@ -1,11 +1,12 @@
 from django.urls import path
 
 from store.views import cart, delete_cart, product_detail, add_to_cart, create_checkout_session, \
-    checkout_success, stripe_webhook
+    checkout_success, product_list, stripe_webhook
 
 app_name = "store"
 
 urlpatterns = [
+    path('product-list', product_list, name="product-list"),
     path('cart', cart, name="cart"),
     path('stripe-webhook/', stripe_webhook, name="stripe-webhook"),
     path('store/success', checkout_success, name="checkout-success"),

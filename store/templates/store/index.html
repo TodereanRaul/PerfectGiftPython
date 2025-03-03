@@ -1,32 +1,5 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container mx-auto py-8">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    {% for product in products %}
-    <div class="card card-compact bg-base-100 shadow-xl">
-      <figure class="h-64 w-full overflow-hidden">
-        {% if product.thumbnail %}
-        <img
-          src="{{ product.thumbnail.url }}"
-          alt="{{ product.name }}"
-          class="h-full w-full object-cover object-center"
-        />
-        {% else %}
-        <div class="h-full w-full bg-gray-200 flex items-center justify-center">
-          <p class="text-gray-500">No image available</p>
-        </div>
-        {% endif %}
-      </figure>
-      <div class="card-body bg-neutral-200 flex flex-col justify-between">
-        <h2 class="card-title">{{ product.name }}</h2>
-
-        <div class="card-actions mt-auto flex justify-end">
-          <a href="{{ product.get_absolute_url }}" class="btn btn-primary"
-            >Voir article</a
-          >
-        </div>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
+  <h3>Hello</h3>
 </div>
 {% endblock %}
