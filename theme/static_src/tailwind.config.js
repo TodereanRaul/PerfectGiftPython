@@ -5,8 +5,6 @@
  * https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
  */
 
-const { root } = require("postcss");
-
 module.exports = {
   content: [
     /**
@@ -42,25 +40,10 @@ module.exports = {
      * and make sure the pattern below matches your project structure.
      */
     // '../../**/*.py'
+    "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {
-      // colors: {
-      //   beige: "#E7D3B7",
-      //   blanc: "#F5F5F5",
-      //   brown: "#BDB19F",
-      //   green: "#8D9C88",
-      //   darkBrown: "#9A8C7A",
-      // },
-      // textColor: {
-      //   primary: {
-      //     DEFAULT: "#374151",
-      //   },
-      //   secondary: {
-      //     DEFAULT: "#6B7280",
-      //   },
-      // },
-    },
+    extend: {},
   },
   plugins: [
     /**
@@ -71,10 +54,6 @@ module.exports = {
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     require("@tailwindcss/aspect-ratio"),
-    require("daisyui"),
+    require("flowbite/plugin"),
   ],
-  daisyui: {
-    themes: ["light", "dark", "cupcake"],
-    root: ":root",
-  },
 };
