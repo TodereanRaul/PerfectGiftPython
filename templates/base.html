@@ -1,186 +1,405 @@
 {% load static tailwind_tags %}
 
 <!DOCTYPE html>
-<html lang="fr" data-theme="cupcake">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Perfect Gift</title>
     {% tailwind_css %}
+    <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
   </head>
-  <body class="">
-    <!-- Header -->
-    <header class="navbar mx-auto max-w-screen-xl px-4">
-      <div class="navbar-start">
-        <div class="dropdown">
-          <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
-          </div>
-          {% comment %} dropdown menu {% endcomment %}
-          <ul
-            tabindex="1"
-            class="menu menu-sm dropdown-content rounded-box z-30 mt-3 w-52 p-2 shadow"
-          >
-            <li>
-              <a
-                href="{% url 'accounts:profile' %}"
-                class="text-base text-primary nav-link"
-                >A propos</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'accounts:profile' %}"
-                class="text-base text-primary nav-link"
-                >Contact</a
-              >
-              {% if user.is_authenticated %}
-            </li>
-
-            <li>
-              <a
-                href="{% url 'accounts:profile' %}"
-                class="text-base text-primary nav-link"
-                >Mon Profil</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'accounts:signout' %}"
-                class="text-base text-primary nav-link"
-                >Se déconnecter</a
-              >
-            </li>
-
-            {% else %}
-            <li>
-              <a
-                href="{% url 'accounts:signup' %}"
-                class="text-base text-primary nav-link"
-                >S'inscrire</a
-              >
-            </li>
-            <li>
-              <a
-                href="{% url 'accounts:login' %}"
-                class="text-base text-primary nav-link"
-                >Se connecter</a
-              >
-            </li>
-            {% endif %}
-          </ul>
-          {% comment %} end dropdown menu {% endcomment %}
-        </div>
-        <a href="{% url 'index' %}">
-          <img
-            src="{% static 'images/logo-transparent.png' %}"
-            alt="La Boutique de Cadeaux"
-            class="h-24"
-          />
-        </a>
-      </div>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal px-1">
-          <li>
-            <a href="{% url 'store:product-list' %}" class="text-base"
-              >Nos Cadeaux</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'accounts:profile' %}"
-              class="text-base text-primary nav-link"
-              >A propos</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'accounts:profile' %}"
-              class="text-base text-primary nav-link"
-              >Contact</a
-            >
-            {% if user.is_authenticated %}
-          </li>
-
-          <li>
-            <a
-              href="{% url 'accounts:profile' %}"
-              class="text-base text-primary nav-link"
-              >Mon Profil</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'accounts:signout' %}"
-              class="text-base text-primary nav-link"
-              >Se déconnecter</a
-            >
-          </li>
-
-          {% else %}
-          <li>
-            <a
-              href="{% url 'accounts:signup' %}"
-              class="text-base text-primary nav-link"
-              >S'inscrire</a
-            >
-          </li>
-          <li>
-            <a
-              href="{% url 'accounts:login' %}"
-              class="text-base text-primary nav-link"
-              >Se connecter</a
-            >
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-      <div class="navbar-end">
-        {% if user.is_authenticated %}
-        <div>
-          <span class="mr-4 font-semibold text-green"
-            >Bienvenue, {{ user.email }}</span
-          >
-        </div>
-        <button class="btn btn-ghost btn-circle">
-          <div class="indicator">
-            <a href="{% url 'store:cart' %}">
+  <body class="bg-blanc text-primary">
+    {% comment %} banner {% endcomment %}
+    <div class="hidden sm:flex">
+      <div
+        class="flex flex-col md:flex-row md:justify-center md:space-x-8 md:py-2 bg-lightBlue w-full"
+      >
+        <div
+          class="hidden first:flex md:flex flex-col grow md:grow-0 md:border-r md:last:border-none md:border-gray-950/30 md:pr-8 last:pr-0"
+        >
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5"
-                fill="none"
+                class="w-5 h-5 shrink-0 mr-2"
+                width="24"
+                height="24"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
+                  d="M14.3076 7.38739H18.923C19.7391 7.38739 20.5217 7.71157 21.0988 8.2886C21.6758 8.86564 22 9.64827 22 10.4643V16.6182H19.6923"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M3.53845 16.6179H1.99996V5.84862C1.99996 5.44059 2.16205 5.04928 2.45057 4.76076C2.73909 4.47224 3.13041 4.31015 3.53845 4.31015H12.7694C13.1774 4.31015 13.5687 4.47224 13.8572 4.76076C14.1458 5.04928 14.3079 5.44059 14.3079 5.84862V14.5871"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M13.5382 16.618H9.69199"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M16.6155 19.6948C14.9162 19.6948 13.5386 18.3172 13.5386 16.6179C13.5386 14.9185 14.9162 13.5409 16.6155 13.5409C18.3149 13.5409 19.6925 14.9185 19.6925 16.6179C19.6925 18.3172 18.3149 19.6948 16.6155 19.6948Z"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M6.61602 19.6948C4.91665 19.6948 3.53904 18.3172 3.53904 16.6179C3.53904 14.9185 4.91665 13.5409 6.61602 13.5409C8.31538 13.5409 9.69299 14.9185 9.69299 16.6179C9.69299 18.3172 8.31538 19.6948 6.61602 19.6948Z"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <div class="text-xs md:text-md">
+                <p>Production et livraison rapide</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="hidden first:flex md:flex flex-col grow md:grow-0 md:border-r md:last:border-none md:border-gray-950/30 md:pr-8 last:pr-0"
+        >
+          <div class="flex justify-between items-center">
+            <div class="flex items-center">
+              <svg
+                class="w-5 h-5 shrink-0 mr-2"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M4.03125 5.8917C6.87353 4.41518 10.4903 3.05388 13.8646 2.22356C14.8516 1.98067 15.8717 2.34597 16.3851 3.22324C16.7517 3.84974 17.1992 4.7087 17.6725 5.83175"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M14.4118 15.2283C14.4567 16.2423 15.2386 16.998 16.2527 17.0387C16.769 17.0594 17.4115 17.0743 18.1905 17.0743C18.9696 17.0743 19.612 17.0594 20.1284 17.0387C21.1425 16.9981 21.9244 16.2423 21.9693 15.2283C21.9876 14.8155 22 14.3216 22 13.7411C22 13.1606 21.9876 12.6667 21.9693 12.2538C21.9244 11.2399 21.1425 10.4842 20.1284 10.4435C19.612 10.4228 18.9696 10.4078 18.1905 10.4078C17.4115 10.4078 16.769 10.4228 16.2527 10.4435C15.2386 10.4841 14.4567 11.2399 14.4118 12.2538C14.3935 12.6667 14.3811 13.1606 14.3811 13.7411C14.3811 14.3216 14.3935 14.8155 14.4118 15.2283Z"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M20.0347 10.4398C19.9975 9.47989 19.947 8.68791 19.8953 8.05311C19.7964 6.83833 18.8532 5.92426 17.6373 5.84012C16.2376 5.74331 14.0774 5.64603 11.0474 5.64603C8.01738 5.64603 5.8572 5.74331 4.45754 5.84012C3.24165 5.92426 2.29837 6.83833 2.19947 8.05311C2.09733 9.30761 2 11.176 2 13.7411C2 16.3062 2.09733 18.1745 2.19947 19.429C2.29837 20.6438 3.24165 21.5579 4.45754 21.642C5.8572 21.7388 8.01738 21.8361 11.0474 21.8361C14.0774 21.8361 16.2376 21.7388 17.6373 21.642C18.8532 21.5579 19.7964 20.6438 19.8953 19.429C19.947 18.7942 19.9975 18.0023 20.0347 17.0423"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+                <path
+                  d="M17.7139 13.2649V14.2173"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+              <div class="text-xs md:text-md">
+                <p>Paiement 100 % sécurisé !</p>
+              </div>
+            </div>
+            <div class="py-2.5 pl-2.5 shrink-0 md:hidden">
+              <svg
+                class="w-4 h-4 md:hidden transition-all duration-300 rotate-90"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.95001 19.92L15.47 13.4C16.24 12.63 16.24 11.37 15.47 10.6L8.95001 4.07999"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!---->
+      </div>
+    </div>
+    {% comment %} end banner {% endcomment %}
+    <!-- Header -->
+    <nav class="antialiased">
+      <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-8">
+            <div class="shrink-0">
+              <a
+                href="{% url 'index' %}"
+                class="flex items-center space-x-3 rtl:space-x-reverse"
+              >
+                <img
+                  src="{% static 'images/logo-transparent.png' %}"
+                  class="h-20"
+                  alt="La Boutique de Cadeaux"
+                />
+              </a>
+            </div>
+            <ul
+              class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center"
+            >
+              <li>
+                <a
+                  href="{% url 'index' %}"
+                  title=""
+                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
+                >
+                  Accueil
+                </a>
+              </li>
+              <li class="shrink-0">
+                <a
+                  href="#"
+                  title=""
+                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
+                >
+                  A propos
+                </a>
+              </li>
+              <li class="shrink-0">
+                <a
+                  href="{% url 'accounts:profile' %}"
+                  title=""
+                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
+                >
+                  Contact
+                </a>
+              </li>
+              <li class="shrink-0">
+                <a
+                  href="{% url 'store:product-list' %}"
+                  title=""
+                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
+                >
+                  Nos Cadeaux
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="flex items-center lg:space-x-2">
+            {% if user.is_authenticated %}
+            <span class="mr-4 font-medium text-secondary hidden md:block"
+              >Bienvenue, {{ user.email }}</span
+            >
+            {% if user.cart and not user.cart.ordered %}
+            <a
+              href="{% url 'store:cart' %}"
+              class="inline-flex items-center rounded-lg justify-center p-2 font-medium leading-none hover:bg-rose text-base text-primary hover:text-pink-400"
+            >
+              <svg
+                class="w-5 h-5 lg:me-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                   stroke-width="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.6 8M17 13l1.6 8M9 21h6M9 21a2 2 0 11-4 0M15 21a2 2 0 104 0"
+                  d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
                 />
               </svg>
-              <span class="badge badge-xs badge-primary indicator-item">
-                {{ user.cart.orders.count }}
-              </span>
+              <span class="hidden sm:flex"
+                >Mon panier ({{ user.cart.orders.count }})</span
+              >
             </a>
+            {% endif %}
+            <button
+              id="userDropdownButton1"
+              data-dropdown-toggle="userDropdown1"
+              type="button"
+              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
+            >
+              <svg
+                class="w-5 h-5 me-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+              Account
+              <svg
+                class="w-4 h-4 ms-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 9-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id="userDropdown1"
+              class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
+            >
+              <ul class="p-2 text-start text-sm font-medium text-primary">
+                <li>
+                  <a
+                    href="{% url 'accounts:profile' %}"
+                    title=""
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                    >Mon profile</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="{% url 'accounts:signout' %}"
+                    title=""
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                    >Se déconnecter</a
+                  >
+                </li>
+              </ul>
+            </div>
+            {% else %}
+            <button
+              id="userDropdownButton1"
+              data-dropdown-toggle="userDropdown1"
+              type="button"
+              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
+            >
+              <svg
+                class="w-5 h-5 me-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-width="2"
+                  d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                />
+              </svg>
+              Account
+              <svg
+                class="w-4 h-4 text-gray-900 dark:text-white ms-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 9-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              id="userDropdown1"
+              class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700"
+            >
+              <ul
+                class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white"
+              >
+                <li>
+                  <a
+                    href="{% url 'accounts:signup' %}"
+                    title=""
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >S'inscrire</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="{% url 'accounts:login' %}"
+                    title=""
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                    >Se connecter</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            {% endif %}
+            <button
+              type="button"
+              data-collapse-toggle="ecommerce-navbar-menu-1"
+              aria-controls="ecommerce-navbar-menu-1"
+              aria-expanded="false"
+              class="inline-flex lg:hidden items-center justify-center rounded-md p-2 text-primary hover:text-pink-500 hover:bg-rose"
+            >
+              <span class="sr-only">Open Menu</span>
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-width="2"
+                  d="M5 7h14M5 12h14M5 17h14"
+                />
+              </svg>
+            </button>
           </div>
-        </button>
-        {% endif %}
+        </div>
+        <div
+          id="ecommerce-navbar-menu-1"
+          class="bg-blanc border border-brown rounded-lg py-3 hidden px-4 mt-4"
+        >
+          <ul class="text-primary text-base font-medium space-y-3">
+            <li>
+              <a href="{% url 'index' %}" class="">Accueil</a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:profile' %}" class="">A propos</a>
+            </li>
+            <li>
+              <a href="{% url 'store:product-list' %}" class="">Nos Cadeaux</a>
+            </li>
+            <li>
+              <a href="{% url 'accounts:profile' %}" class="">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
 
     <!-- Main Content -->
     <main class="mx-auto max-w-screen-xl px-4">
@@ -188,10 +407,12 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-8 py-4">
+    <footer class="bg-gray-800 text-white py-4">
       <div class="container mx-auto text-center text-sm">
         &copy; 2025 La Boutique de Cadeaux. Tous droits réservés.
       </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   </body>
 </html>
