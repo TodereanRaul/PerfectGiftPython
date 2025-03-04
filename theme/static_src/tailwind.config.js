@@ -43,7 +43,22 @@ module.exports = {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        blanc: "#fcf8f4",
+        lightBlue: "#D6E2E9",
+        darkBlue: "#99C1DE",
+        darkestBlue: "#7FAECC",
+        rose: "#FDE2E4",
+        darkRose: "#FAD2E1",
+        brown: "#554c44",
+      },
+      textColor: {
+        primary: "#554c44",
+        secondary: "#7d766e",
+        accent: "#afaaa4",
+      },
+    },
   },
   plugins: [
     /**
