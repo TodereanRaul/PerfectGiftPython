@@ -15,12 +15,12 @@ class Variant(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, unique=True, blank=True)  # Slug généré automatiquement si vide
-    price = models.FloatField(default=0.0)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     available = models.BooleanField(default=True)
     description = RichTextField(blank=True)  # RichText pour mise en forme
     thumbnail = models.ImageField(upload_to="products", blank=True, null=True)  # Image principale
     variants = models.ManyToManyField("self", blank=True, symmetrical=False)
-    user_comment = models.TextField(blank=True, null=True)
+    # user_comment = models.TextField(blank=True, null=True)
     stripe_id = models.CharField(max_length=90, blank=True)
 
     def save(self, *args, **kwargs):
@@ -69,6 +69,9 @@ class Cart(models.Model):
 
     def __str__(self):
         return self.user.email
+    
+    def get_total_price(self):
+        return sum(order.product.price * order.quantity for order in self.orders.all())
     
     def order_ok(self):
         for order in self.orders.all():

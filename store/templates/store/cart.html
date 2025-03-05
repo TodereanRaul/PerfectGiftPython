@@ -1,49 +1,72 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container mx-auto py-8">
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <form method="POST">
-      {% csrf_token %} {{ forms.management_form }} {% for form in forms %}
-      <div
-        class="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300"
-      >
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">
-          {{form.instance.product.name}}
-        </h2>
-        <img
-          src="{{ form.instance.product.thumbnail.url }}"
-          alt="{{ form.instance.product.name }}"
-          class="w-16 h-16 object-cover rounded-md mb-4"
-        />
-        <p class="text-gray-800">{{ form.instance.product.name }}</p>
-        {{ form.as_p }}
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="p-6 col-span-2">
+      <form method="POST">
+        {% csrf_token %} {{ forms.management_form }} {% for form in forms %}
+        <div class="rounded-lg p-6 mb-6 bg-white">
+          <div class="flex items-center">
+            <img
+              src="{{ form.instance.product.thumbnail.url }}"
+              alt="{{ form.instance.product.name }}"
+              class="w-36 h-36 object-cover rounded-md mr-6"
+            />
+            <div>
+              <h2 class="text-lg font-semibold text-primary mb-2">
+                {{ form.instance.product.name }}
+              </h2>
+              <p class="text-secondary">
+                Prix unitaire: {{ form.instance.product.price }} €
+              </p>
+              {{ form.as_p }}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="mt-6 grid grid-cols-2 gap-4">
+          <a
+            href="{% url 'store:delete-cart' %}"
+            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkRose hover:bg-[#F37A9E] transition ease-in text-blanc"
+          >
+            Supprimer le panier
+          </a>
+          <button
+            type="submit"
+            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkBlue hover:bg-darkestBlue text-blanc"
+          >
+            Mettre à jour le panier
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="rounded-lg p-6 border">
+      <h3 class="text-xl font-semibold text-primary mb-4">Montant total</h3>
+      <div class="flex justify-between text-lg text-secondary mb-4">
+        <span>Sous-total:</span>
+        <span>{{ total_price }} €</span>
       </div>
-      {% endfor %}
-      <button
-        type="submit"
-        class="text-center text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md transition duration-300 mt-4"
-      >
-        Mettre à jour le panier
-      </button>
-    </form>
-  </div>
+      <div class="flex justify-between text-lg text-secondary mb-4">
+        <span>Livraison:</span>
+        <span>dès 5,00 €</span>
+      </div>
+      <div class="border-t pt-4 flex justify-between text-2xl text-primary">
+        <span>Total:</span>
+        <span>{{ total_price|add:5 }} €</span>
+      </div>
 
-  <div class="mt-8 flex justify-end space-x-4">
-    <a
-      href="{% url 'store:delete-cart' %}"
-      class="text-center text-white bg-red-500 hover:bg-red-600 px-4 py-2 rounded-md transition duration-300"
-    >
-      Supprimer le panier
-    </a>
-
-    <form action="{% url 'store:create_checkout_session' %}" method="POST">
-      {% csrf_token %}
-      <button
-        type="submit"
-        class="text-center text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-md transition duration-300"
-      >
-        Procéder au paiement
-      </button>
-    </form>
+      <div class="mt-6 space-y-4">
+        <form action="{% url 'store:create_checkout_session' %}" method="POST">
+          {% csrf_token %}
+          <button
+            type="submit"
+            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-blanc"
+          >
+            Procéder au paiement
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

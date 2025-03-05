@@ -50,7 +50,7 @@ module.exports = {
         darkBlue: "#99C1DE",
         darkestBlue: "#7FAECC",
         rose: "#FDE2E4",
-        darkRose: "#FAD2E1",
+        darkRose: "#F7A9C3",
         brown: "#554c44",
       },
       textColor: {
