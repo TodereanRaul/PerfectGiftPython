@@ -1,93 +1,223 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="container mx-auto px-4 py-8">
-  <!-- Product Title -->
-  <h2 class="text-3xl font-bold mb-4">{{ product.name }}</h2>
-  <h3 class="text-xl text-gray-600 mb-6">€{{ product.price }}</h3>
+<section class="py-8 md:py-16 antialiased">
+  <div class="max-w-screen-xl px-4 mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-5 xl:gap-16">
+      <!-- Product Carousel -->
+      <div class="col-span-3">
+        <div
+          id="default-carousel"
+          class="relative w-full"
+          data-carousel="slide"
+        >
+          <!-- Carousel wrapper -->
+          <div class="relative h-80 overflow-hidden rounded-lg md:h-[500px]">
+            {% for image in product.images.all %}
+            <div
+              class="hidden duration-700 ease-in-out h-full"
+              data-carousel-item
+            >
+              <img
+                src="{{ image.image.url }}"
+                alt="{{ product.name }}"
+                class="absolute block w-full object-cover h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              />
+            </div>
+            {% endfor %}
+          </div>
+          <!-- Slider indicators -->
+          <div
+            class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
+          >
+            {% for image in product.images.all %}
+            <button
+              type="button"
+              class="w-6 h-3 rounded-full bg-white opacity-75 hover:opacity-100"
+              aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+              aria-label="Slide {{ forloop.counter }}"
+              data-carousel-slide-to="{{ forloop.counter0 }}"
+            ></button>
+            {% endfor %}
+          </div>
+          <!-- Slider controls -->
+          <button
+            type="button"
+            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-prev
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-white/60"
+            >
+              <svg
+                class="w-4 h-4 text-primary rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 1 1 5l4 4"
+                />
+              </svg>
+              <span class="sr-only">Previous</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+            data-carousel-next
+          >
+            <span
+              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white hover:bg-white/60"
+            >
+              <svg
+                class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <span class="sr-only">Next</span>
+            </span>
+          </button>
+        </div>
+      </div>
 
-  <!-- Product Thumbnail -->
-  {% if product.thumbnail and product.thumbnail.url %}
-  <img
-    src="{{ product.thumbnail.url }}"
-    alt="{{ product.name }}"
-    class="w-64 rounded-lg shadow-md mb-6"
-  />
-  {% else %}
-  <p class="text-gray-500 italic mb-6">No image available</p>
-  {% endif %}
+      <div class="col-span-2 lg:mt-0 border rounded-lg p-6">
+        <!-- Product Title -->
+        <h1 class="text-xl font-semibold sm:text-2xl text-primary">
+          {{ product.name }}
+        </h1>
+        <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
+          <p class="text-2xl sm:text-3xl text-secondary">
+            €{{ product.price }}
+          </p>
+        </div>
 
-  <!-- Product Description -->
-  <p class="text-gray-700 leading-relaxed mb-6">
-    {{ product.description|safe }}
-  </p>
+        <!-- Product Description -->
+        <div class="my-6 text-primary max-h-48 overflow-y-auto">
+          {{ product.description|safe }}
+        </div>
 
-  <!-- Add to Cart Form -->
-  {% if user.is_authenticated %}
-  <form
-    method="POST"
-    action="{% url 'store:add-to-cart' product.slug %}"
-    class="space-y-4"
-  >
-    {% csrf_token %}
-    <textarea
-      id="comment"
-      name="comment"
-      rows="4"
-      placeholder="Écrivez votre commentaire ici..."
-      class="w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-    ></textarea>
-    <button
-      type="submit"
-      class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow"
-    >
-      Ajouter au panier
-    </button>
-  </form>
-  {% endif %}
+        <!-- Add to Cart Form -->
+        {% if user.is_authenticated %}
+        <form
+          method="POST"
+          action="{% url 'store:add-to-cart' product.slug %}"
+          class="space-y-4"
+        >
+          {% csrf_token %} {% comment %}
+          <textarea
+            id="comment"
+            name="comment"
+            rows="4"
+            placeholder="Écrivez votre commentaire ici..."
+            class="w-full border border-gray-300 rounded-lg shadow-sm p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          ></textarea>
+          {% endcomment %}
+          <button
+            type="submit"
+            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-blanc"
+          >
+            Ajouter au panier
+          </button>
+        </form>
+        {% endif %} {% comment %} Disponibilités {% endcomment %}
+        <div class="mt-6">
+          {% if product.available %}
+          <div class="w-full bg-[#ebede4] rounded-md p-5 flex items-center">
+            <span
+              class="bg-[#768948] text-blanc text-xs font-medium me-5 px-2.5 py-0.5 rounded-sm flex-shrink-0"
+              >En stock</span
+            >
+            <div class="flex flex-col">
+              <p class="text-primary">Se produit est disponible</p>
+              <p class="text-secondary">Expédition sous 24 heures</p>
+            </div>
+          </div>
 
-  <!-- Variants -->
-  {% if product.variants.exists %}
-  <h3 class="text-xl font-semibold mt-8 mb-4">Variantes disponibles :</h3>
-  <ul class="space-y-2">
-    {% for variant in product.variants.all %}
-    <li>
-      <a
-        href="{{ variant.get_absolute_url }}"
-        class="text-blue-500 hover:underline"
-      >
-        {{ variant.name }}
-      </a>
-      - €{{ variant.price }}
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p class="text-gray-500 mt-4">Aucune variante disponible.</p>
-  {% endif %}
-
-  <!-- Additional Images -->
-  {% if product.images.exists %}
-  <h3 class="text-xl font-semibold mt-8 mb-4">Autres images :</h3>
-  <div class="flex flex-wrap gap-4">
-    {% for image in product.images.all %}
-    <div>
-      <img
-        src="{{ image.image.url }}"
-        alt="{{ product.name }}"
-        class="w-36 rounded-lg shadow"
-      />
+          {% else %}
+          <div class="w-full bg-[#F8C8C8] rounded-md p-5 flex items-center">
+            <span
+              class="bg-[#E27D7A] text-blanc text-xs font-medium me-5 px-2.5 py-0.5 rounded-sm flex-shrink-0"
+              >En rupture de stock</span
+            >
+            <div class="flex flex-col">
+              <p class="text-primary">Ce produit n'est pas disponible</p>
+              <p class="text-secondary">Veuillez vérifier plus tard</p>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+        {% comment %}
+        <!-- User Comment -->
+        {% if product.user_comment %}
+        <h3 class="text-xl font-semibold mt-8 mb-4">Commentaire :</h3>
+        <p class="text-gray-700">{{ product.user_comment }}</p>
+        {% endif %} {% endcomment %}
+      </div>
     </div>
-    {% endfor %}
   </div>
-  {% else %}
-  <p class="text-gray-500 mt-4">Aucune image supplémentaire disponible.</p>
-  {% endif %}
+  <div class="max-w-screen-xl px-4 mx-auto mt-8">
+    <!-- Variants -->
+    {% if product.variants.exists %}
+    <h3 class="text-3xl text-primary mb-8">Vous pourriez aussi aimer</h3>
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+    >
+      <ul class="space-y-2">
+        {% for variant in product.variants.all %}
+        <li>
+          <div
+            class="card card-compact overflow-hidden transform transition-transform hover:-translate-y-1"
+          >
+            <a href="{{ variant.get_absolute_url }}" class="block pb-4">
+              <figure class="h-64 w-full bg-gray-100 relative">
+                {% if variant.thumbnail %}
+                <img
+                  src="{{ variant.thumbnail.url }}"
+                  alt="{{ variant.name }}"
+                  class="object-cover h-full w-full rounded"
+                />
+                {% else %}
+                <div
+                  class="h-full w-full bg-gray-200 flex items-center justify-center"
+                >
+                  <p class="text-gray-500">No image available</p>
+                </div>
+                {% endif %}
+              </figure>
+              <div class="card-body mt-4 bg-blanc text-center">
+                <div class="flex justify-between">
+                  <p class="w-full text-primary text-p mb-2">
+                    {{ variant.name }}
+                  </p>
+                </div>
+                <p class="text-secondary">€{{ variant.price }}</p>
+              </div>
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
 
-  <!-- User Comment -->
-  {% if product.user_comment %}
-  <h3 class="text-xl font-semibold mt-8 mb-4">Commentaire :</h3>
-  <p class="text-gray-700">{{ product.user_comment }}</p>
-  {% endif %}
-</div>
+    {% else %}
+    <p class="text-gray-500 mt-4">Aucune variante disponible</p>
+    {% endif %}
+  </div>
+</section>
 
 {% endblock %}

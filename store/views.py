@@ -78,7 +78,8 @@ def cart(request):
             formset.save()
             return redirect('store:cart')
 
-    return render(request, 'store/cart.html', context={"forms": formset})
+    total_price = round(sum(order.product.price * order.quantity for order in orderes), 2)
+    return render(request, 'store/cart.html', context={"forms": formset, "total_price": total_price})
 
 
 
