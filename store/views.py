@@ -23,6 +23,9 @@ stripe.api_key = settings.STRIPE_API_KEY
 def index(request):
     return render(request, 'store/index.html')
 
+def about(request):
+    return render(request, 'store/about.html')
+
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'store/product-list.html', context={"products": products})

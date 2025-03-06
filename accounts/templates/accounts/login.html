@@ -1,22 +1,28 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<section class="">
-  <div class="grid grid-cols-1 md:grid-cols-2 md:h-screen lg:py-0">
-    <div class="h-1/2">
+<section class="min-h-screen flex items-center justify-center">
+  <div
+    class="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl p-6 space-y-6 md:space-y-0 md:space-x-6"
+  >
+    <div class="block w-full md:w-1/2">
       <img
         src="{% static 'images/glad.jpeg' %}"
         alt="login"
-        class="object-cover w-full h-full hidden md:block"
+        class="object-cover w-full h-full rounded-lg"
       />
     </div>
-    {% comment %} connexion block {% endcomment %}
-    <div class="rounded-lg md:mt-0 sm:max-w-md xl:p-0">
-      <div class="p-6 space-y-4 md:space-y-6 sm:p-8 bg-white">
+    <div class="w-full md:w-1/2">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1
-          class="text-xl font-bold leading-tight tracking-tight text-primary md:text-2xl"
+          class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-primary"
         >
           Connexion
         </h1>
+        <h2
+          class="text-lg font-medium leading-tight tracking-tight md:text-xl text-secondary"
+        >
+          Bienvenue ! Veuillez vous connecter pour continuer.
+        </h2>
         <form method="POST" class="space-y-4 md:space-y-6">
           {% csrf_token %}
           <div>
@@ -29,7 +35,7 @@
               type="email"
               name="email"
               id="email"
-              class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              class="bg-blanc border border-gray-300 text-primary text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               placeholder="name@company.com"
               required
             />
@@ -45,20 +51,19 @@
               name="password"
               id="password"
               placeholder="••••••••"
-              class="bg-gray-50 border border-gray-300 text-primary text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+              class="bg-blanc border border-gray-300 text-primary text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
               required
             />
           </div>
           <button
             type="submit"
-            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-blanc"
+            class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-white"
           >
             Connexion
           </button>
         </form>
       </div>
     </div>
-    {% comment %} image block {% endcomment %}
   </div>
 </section>
 
