@@ -1,28 +1,37 @@
-{% extends "base.html" %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-<div class="max-w-md mx-auto mt-10 bg-white p-8 rounded-lg shadow-md">
-  <h1 class="text-2xl font-bold mb-6 text-center">Profile</h1>
-  <form method="POST" class="space-y-6">
-    {% csrf_token %} {{ form.as_p }} {% if messages %}
-    <ul class="list-disc list-inside">
-      {% for message in messages %}
-      <li class="text-red-500">{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-    <button
-      type="submit"
-      class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-    >
-      Enregistrer
-    </button>
-  </form>
-</div>
+<section class="min-h-min flex items-center justify-center">
+  <div class="w-full max-w-4xl p-6 space-y-6">
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-primary"
+      >
+        Profile
+      </h1>
+      <form method="POST" class="space-y-4 md:space-y-6">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>{{ form.first_name.label_tag }} {{ form.first_name }}</div>
+          <div>{{ form.last_name.label_tag }} {{ form.last_name }}</div>
+        </div>
+        <div>{{ form.email.label_tag }} {{ form.email }}</div>
+        <div>{{ form.password.label_tag }} {{ form.password }}</div>
+        {% if messages %}
+        <ul class="list-disc list-inside">
+          {% for message in messages %}
+          <li class="text-red-500">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <button
+          type="submit"
+          class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-white"
+        >
+          Enregistrer
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
 
-{% comment %}
-<div class="max-w-md mx-auto mt-10 bg-white p-8 rounded-lg shadow-md">
-  <h2 class="text-xl font-bold mb-4">Shipping Addresses</h2>
-  {% for address in addresses %} {% include "accounts/address.html" %}
-  {%endfor%}
-</div>
-{% endcomment %} {% endblock %}
+{% endblock %}
