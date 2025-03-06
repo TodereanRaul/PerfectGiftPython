@@ -51,7 +51,6 @@ module.exports = {
         darkestBlue: "#7FAECC",
         rose: "#FDE2E4",
         darkRose: "#F7A9C3",
-        brown: "#554c44",
       },
       textColor: {
         primary: "#554c44",
