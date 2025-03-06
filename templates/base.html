@@ -1,5 +1,4 @@
-{% load static tailwind_tags %}
-
+{% load static tailwind_tags %} {% load i18n %}
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -60,7 +59,7 @@
                 ></path>
               </svg>
               <div class="text-xs md:text-md">
-                <p>Production et livraison rapide</p>
+                <p>{% trans "Production et livraison rapide" %}</p>
               </div>
             </div>
           </div>
@@ -104,7 +103,7 @@
                 ></path>
               </svg>
               <div class="text-xs md:text-md">
-                <p>Paiement 100 % sécurisé !</p>
+                <p>{% trans "Paiement 100 % sécurisé !" %}</p>
               </div>
             </div>
             <div class="py-2.5 pl-2.5 shrink-0 md:hidden">
@@ -132,6 +131,22 @@
     </div>
     {% comment %} end banner {% endcomment %}
     <!-- Header -->
+
+    <form action="{% url 'set_language' %}" method="post">
+      {% csrf_token %}
+      <select name="language" onchange="this.form.submit()">
+        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>
+          English
+        </option>
+        <option value="fr" {% if request.LANGUAGE_CODE == 'fr' %}selected{% endif %}>
+          Français
+        </option>
+        <option value="nl" {% if request.LANGUAGE_CODE == 'nl' %}selected{% endif %}>
+          Nederlands
+        </option>
+      </select>
+    </form>
+    
     <nav class="antialiased">
       <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="flex items-center justify-between">
