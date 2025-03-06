@@ -289,7 +289,7 @@
               id="userDropdownButton1"
               data-dropdown-toggle="userDropdown1"
               type="button"
-              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
+              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
             >
               <svg
                 class="w-5 h-5 me-1"
@@ -308,7 +308,7 @@
               </svg>
               Account
               <svg
-                class="w-4 h-4 text-gray-900 dark:text-white ms-1"
+                class="w-4 h-4 ms-1"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -327,16 +327,14 @@
             </button>
             <div
               id="userDropdown1"
-              class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700"
+              class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
             >
-              <ul
-                class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white"
-              >
+              <ul class="p-2 text-start text-sm font-medium text-primary">
                 <li>
                   <a
                     href="{% url 'accounts:signup' %}"
                     title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
                     >S'inscrire</a
                   >
                 </li>
@@ -344,7 +342,7 @@
                   <a
                     href="{% url 'accounts:login' %}"
                     title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
                     >Se connecter</a
                   >
                 </li>
@@ -409,7 +407,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-4">
       <div class="container mx-auto text-center text-sm">
-        &copy; 2025 La Boutique de Cadeaux. Tous droits réservés.
+        &copy; 2025 The Perfect Gift. Tous droits réservés.
       </div>
     </footer>
 

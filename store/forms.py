@@ -1,11 +1,22 @@
 from django import forms
-
 from store.models import Order
 
 class OrderForm(forms.ModelForm):
-    quantity = forms.ChoiceField(choices=[(i, i) for i in range(1, 11)]) 
-    # allow user to delete one item from the cart
-    delete = forms.BooleanField(required=False, label="Supprimer l'article", initial=False)
+    quantity = forms.ChoiceField(
+        choices=[(i, i) for i in range(1, 11)],
+        widget=forms.Select(attrs={
+            'class': 'border border-gray-300 rounded-md w-7', 
+
+        })
+    )
+    delete = forms.BooleanField(
+        required=False, 
+        label="Supprimer l'article", 
+        initial=False,
+        widget=forms.CheckboxInput(attrs={
+            'class': 'h-5 w-5  border-gray-300 rounded text-primary ', 
+        })
+    )
 
     # Meta class is used to specify the model and fields
     class Meta:
@@ -13,7 +24,7 @@ class OrderForm(forms.ModelForm):
         fields = ['quantity']
 
     def save(self, *args, **kwargs):
-        # get data from the form using a dictionary 
+        # get data from the form using a dictionary
         # if delete is checked, delete the instance
         if self.cleaned_data["delete"]:
             self.instance.delete()
