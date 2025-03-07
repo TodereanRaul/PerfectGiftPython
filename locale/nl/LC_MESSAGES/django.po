@@ -17,9 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\templates\base.html:8
 msgid "The Perfect Gift"
-msgstr "Het Perfecte Geschenk"
+msgstr "The Perfect Gift"
 
 #: .\templates\base.html:25
 msgid "Production et livraison rapide"
@@ -92,7 +93,7 @@ msgstr "Registreren"
 
 #: .\templates\base.html:270
 msgid "2025 The Perfect Gift. Tous droits réservés."
-msgstr "2025 Het Perfecte Geschenk. Alle rechten voorbehouden."
+msgstr "2025 The Perfect Gift. Alle rechten voorbehouden."
 
 #: .\templates\store\index.html:10
 msgid "Offrez des cadeaux qui racontent une histoire"
@@ -159,12 +160,17 @@ msgid "mais aussi significatif."
 msgstr "maar ook betekenisvol is."
 
 #: .\templates\store\about.html:30
-msgid "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
-msgstr "Wij geloven dat gepersonaliseerde geschenken meer zijn dan alleen objecten:"
+msgid ""
+"Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgstr ""
+"Wij geloven dat gepersonaliseerde geschenken meer zijn dan alleen objecten:"
 
 #: .\templates\store\about.html:31
-msgid "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
-msgstr "het zijn boodschappen, emoties en herinneringen die we in ons hart dragen."
+msgid ""
+"ce sont des messages, des émotions et des souvenirs que l’on porte dans son "
+"cœur."
+msgstr ""
+"het zijn boodschappen, emoties en herinneringen die we in ons hart dragen."
 
 #: .\templates\store\about.html:32
 msgid "Notre engagement est simple :"
@@ -179,15 +185,21 @@ msgid "empreintes de soin et de passion,"
 msgstr "doordrenkt met zorg en passie,"
 
 #: .\templates\store\about.html:35
-msgid "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgid ""
+"pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
 msgstr "zodat u momenten van geluk kunt bieden aan degenen van wie u houdt."
 
 #: .\templates\store\about.html:36
-msgid "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
-msgstr "Of het nu gaat om een verjaardag, een huwelijk, een geboorte of een andere speciale gelegenheid,"
+msgid ""
+"Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre "
+"occasion spéciale,"
+msgstr ""
+"Of het nu gaat om een verjaardag, een huwelijk, een geboorte of een andere "
+"speciale gelegenheid,"
 
 #: .\templates\store\about.html:37
-msgid "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgid ""
+"nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
 msgstr "we streven ernaar elk moment nog unieker en gedenkwaardiger te maken."
 
 #: .\templates\store\about.html:38
@@ -195,7 +207,8 @@ msgid "Merci de faire partie de cette aventure artisanale."
 msgstr "Bedankt dat je deel uitmaakt van dit ambachtelijke avontuur."
 
 #: .\templates\store\about.html:39
-msgid "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgid ""
+"Chaque commande est pour nous une nouvelle chance de partager notre passion"
 msgstr "Elke bestelling is voor ons een nieuwe kans om onze passie te delen"
 
 #: .\templates\store\about.html:40
@@ -251,8 +264,17 @@ msgid "Idée de cadeaux"
 msgstr "Cadeau-ideeën"
 
 #: .\templates\store\product-list.html:14
-msgid "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
-msgstr "Geef meer dan alleen een cadeau, creëer een emotie. Ontdek onze collectie gepersonaliseerde cadeaus voor elke gelegenheid en elke belangrijke persoon. Elk detail is ontworpen om uw herinneringen om te zetten in onvergetelijke momenten, want de mooiste cadeaus zijn die met een verhaal."
+msgid ""
+"Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection "
+"de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. "
+"Chaque détail est pensé pour transformer vos souvenirs en moments "
+"inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une "
+"histoire."
+msgstr ""
+"Geef meer dan alleen een cadeau, creëer een emotie. Ontdek onze collectie "
+"gepersonaliseerde cadeaus voor elke gelegenheid en elke belangrijke persoon. "
+"Elk detail is ontworpen om uw herinneringen om te zetten in onvergetelijke "
+"momenten, want de mooiste cadeaus zijn die met een verhaal."
 
 #: .\templates\store\product-list.html:28
 msgid "No image available"
@@ -271,14 +293,19 @@ msgid "Bienvenue ! Veuillez vous connecter pour continuer."
 msgstr "Welkom! Log in om door te gaan."
 
 #: .\accounts\templates\accounts\login.html:31
+#: .\accounts\templates\accounts\signup.html:31
+#: .\accounts\templates\accounts\profile.html:17
 msgid "Email"
 msgstr "E-mail"
 
 #: .\accounts\templates\accounts\login.html:38
+#: .\accounts\templates\accounts\signup.html:38
 msgid "name@company.com"
 msgstr "naam@bedrijf.com"
 
 #: .\accounts\templates\accounts\login.html:42
+#: .\accounts\templates\accounts\signup.html:42
+#: .\accounts\templates\accounts\profile.html:19
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -298,30 +325,66 @@ msgstr "Aanmelden"
 msgid "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
 msgstr "Meld je nu aan en profiteer van onze exclusieve diensten."
 
-#: .\accounts\templates\accounts\signup.html:31
-msgid "Email"
-msgstr "E-mail"
-
-#: .\accounts\templates\accounts\signup.html:38
-msgid "name@company.com"
-msgstr "naam@bedrijf.com"
-
-#: .\accounts\templates\accounts\signup.html:42
-msgid "Password"
-msgstr "Wachtwoord"
-
 #: .\accounts\templates\accounts\profile.html:10
 msgid "Profile"
 msgstr "Profiel"
 
-#: .\accounts\templates\accounts\profile.html:17
-msgid "Email"
-msgstr "E-mail"
-
-#: .\accounts\templates\accounts\profile.html:19
-msgid "Password"
-msgstr "Wachtwoord"
-
 #: .\accounts\templates\accounts\profile.html:27
 msgid "btn-Enregistrer"
 msgstr "Opslaan"
+
+#: .\templates\store\contact.html:8
+msgid "Contactez-nous"
+msgstr "Neem contact met ons op"
+
+#: .\templates\store\contact.html:11
+msgid ""
+"Nous utilisons une approche agile pour tester les hypothèses et répondre aux "
+"besoins de votre audience tôt et fréquemment."
+msgstr ""
+"We gebruiken een agile aanpak om hypotheses te testen en vroeg en vaak in te "
+"spelen op de behoeften van uw publiek."
+
+#: .\templates\store\contact.html:17
+msgid "Prénom"
+msgstr "Voornaam"
+
+#: .\templates\store\contact.html:19
+msgid "Bonnie"
+msgstr "Bonnie"
+
+#: .\templates\store\contact.html:22
+msgid "Nom"
+msgstr "Achternaam"
+
+#: .\templates\store\contact.html:24
+msgid "Green"
+msgstr "Green"
+
+#: .\templates\store\contact.html:27
+msgid "Votre email"
+msgstr "Uw e-mail"
+
+#: .\templates\store\contact.html:29
+msgid "name@flowbite.com"
+msgstr "naam@flowbite.com"
+
+#: .\templates\store\contact.html:32
+msgid "Numéro de téléphone"
+msgstr "Telefoonnummer"
+
+#: .\templates\store\contact.html:34
+msgid "+12 345 6789"
+msgstr "+12 345 6789"
+
+#: .\templates\store\contact.html:37
+msgid "Votre message"
+msgstr "Uw bericht"
+
+#: .\templates\store\contact.html:39
+msgid "Laissez un commentaire..."
+msgstr "Laat een reactie achter..."
+
+#: .\templates\store\contact.html:42
+msgid "Envoyer le message"
+msgstr "Verstuur bericht"

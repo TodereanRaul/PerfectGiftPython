@@ -17,9 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
 #: .\templates\base.html:8
 msgid "The Perfect Gift"
-msgstr "Le Cadeau Parfait"
+msgstr "The Perfect Gift"
 
 #: .\templates\base.html:25
 msgid "Production et livraison rapide"
@@ -92,7 +93,7 @@ msgstr "S'inscrire"
 
 #: .\templates\base.html:270
 msgid "2025 The Perfect Gift. Tous droits réservés."
-msgstr "2025 Le Cadeau Parfait. Tous droits réservés."
+msgstr "2025 The Perfect Gift. Tous droits réservés."
 
 #: .\templates\store\about.html:11
 msgid "About Us"
@@ -143,12 +144,18 @@ msgid "mais aussi significatif."
 msgstr "mais aussi significatif."
 
 #: .\templates\store\about.html:30
-msgid "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
-msgstr "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgid ""
+"Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgstr ""
+"Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
 
 #: .\templates\store\about.html:31
-msgid "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
-msgstr "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
+msgid ""
+"ce sont des messages, des émotions et des souvenirs que l’on porte dans son "
+"cœur."
+msgstr ""
+"ce sont des messages, des émotions et des souvenirs que l’on porte dans son "
+"cœur."
 
 #: .\templates\store\about.html:32
 msgid "Notre engagement est simple :"
@@ -163,24 +170,34 @@ msgid "empreintes de soin et de passion,"
 msgstr "empreintes de soin et de passion,"
 
 #: .\templates\store\about.html:35
-msgid "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
-msgstr "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgid ""
+"pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgstr ""
+"pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
 
 #: .\templates\store\about.html:36
-msgid "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
-msgstr "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
+msgid ""
+"Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre "
+"occasion spéciale,"
+msgstr ""
+"Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre "
+"occasion spéciale,"
 
 #: .\templates\store\about.html:37
-msgid "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
-msgstr "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgid ""
+"nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgstr ""
+"nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
 
 #: .\templates\store\about.html:38
 msgid "Merci de faire partie de cette aventure artisanale."
 msgstr "Merci de faire partie de cette aventure artisanale."
 
 #: .\templates\store\about.html:39
-msgid "Chaque commande est pour nous une nouvelle chance de partager notre passion"
-msgstr "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgid ""
+"Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgstr ""
+"Chaque commande est pour nous une nouvelle chance de partager notre passion"
 
 #: .\templates\store\about.html:40
 msgid "et de vous apporter un peu de magie dans vos gestes du quotidien."
@@ -235,8 +252,18 @@ msgid "Idée de cadeaux"
 msgstr "Idée de cadeaux"
 
 #: .\templates\store\product-list.html:14
-msgid "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
-msgstr "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
+msgid ""
+"Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection "
+"de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. "
+"Chaque détail est pensé pour transformer vos souvenirs en moments "
+"inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une "
+"histoire."
+msgstr ""
+"Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection "
+"de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. "
+"Chaque détail est pensé pour transformer vos souvenirs en moments "
+"inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une "
+"histoire."
 
 #: .\templates\store\product-list.html:28
 msgid "No image available"
@@ -255,18 +282,24 @@ msgid "Bienvenue ! Veuillez vous connecter pour continuer."
 msgstr "Bienvenue ! Veuillez vous connecter pour continuer."
 
 #: .\accounts\templates\accounts\login.html:31
+#: .\accounts\templates\accounts\signup.html:31
+#: .\accounts\templates\accounts\profile.html:17
 msgid "Email"
 msgstr "Email"
 
 #: .\accounts\templates\accounts\login.html:38
+#: .\accounts\templates\accounts\signup.html:38
 msgid "name@company.com"
 msgstr "nom@entreprise.com"
 
 #: .\accounts\templates\accounts\login.html:42
+#: .\accounts\templates\accounts\signup.html:42
+#: .\accounts\templates\accounts\profile.html:19
 msgid "Password"
 msgstr "Mot de passe"
 
 #: .\accounts\templates\accounts\login.html:49
+#: .\accounts\templates\accounts\signup.html:49
 msgid "••••••••"
 msgstr "••••••••"
 
@@ -282,34 +315,66 @@ msgstr "Inscription"
 msgid "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
 msgstr "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
 
-#: .\accounts\templates\accounts\signup.html:31
-msgid "Email"
-msgstr "Email"
-
-#: .\accounts\templates\accounts\signup.html:38
-msgid "name@company.com"
-msgstr "nom@entreprise.com"
-
-#: .\accounts\templates\accounts\signup.html:42
-msgid "Password"
-msgstr "Mot de passe"
-
-#: .\accounts\templates\accounts\signup.html:49
-msgid "••••••••"
-msgstr "••••••••"
-
 #: .\accounts\templates\accounts\profile.html:10
 msgid "Profile"
 msgstr "Profil"
 
-#: .\accounts\templates\accounts\profile.html:17
-msgid "Email"
-msgstr "Email"
-
-#: .\accounts\templates\accounts\profile.html:19
-msgid "Password"
-msgstr "Mot de passe"
-
 #: .\accounts\templates\accounts\profile.html:27
 msgid "btn-Enregistrer"
 msgstr "Enregistrer"
+
+#: .\templates\store\contact.html:8
+msgid "Contactez-nous"
+msgstr "Contactez-nous"
+
+#: .\templates\store\contact.html:11
+msgid ""
+"Nous utilisons une approche agile pour tester les hypothèses et répondre aux "
+"besoins de votre audience tôt et fréquemment."
+msgstr ""
+"Nous utilisons une approche agile pour tester les hypothèses et répondre aux "
+"besoins de votre audience tôt et fréquemment."
+
+#: .\templates\store\contact.html:17
+msgid "Prénom"
+msgstr "Prénom"
+
+#: .\templates\store\contact.html:19
+msgid "Bonnie"
+msgstr "Bonnie"
+
+#: .\templates\store\contact.html:22
+msgid "Nom"
+msgstr "Nom"
+
+#: .\templates\store\contact.html:24
+msgid "Green"
+msgstr "Green"
+
+#: .\templates\store\contact.html:27
+msgid "Votre email"
+msgstr "Votre email"
+
+#: .\templates\store\contact.html:29
+msgid "name@flowbite.com"
+msgstr "name@flowbite.com"
+
+#: .\templates\store\contact.html:32
+msgid "Numéro de téléphone"
+msgstr "Numéro de téléphone"
+
+#: .\templates\store\contact.html:34
+msgid "+12 345 6789"
+msgstr "+12 345 6789"
+
+#: .\templates\store\contact.html:37
+msgid "Votre message"
+msgstr "Votre message"
+
+#: .\templates\store\contact.html:39
+msgid "Laissez un commentaire..."
+msgstr "Laissez un commentaire..."
+
+#: .\templates\store\contact.html:42
+msgid "Envoyer le message"
+msgstr "Envoyer le message"
