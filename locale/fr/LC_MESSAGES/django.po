@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-07 08:55+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: .\templates\base.html:8
+msgid "The Perfect Gift"
+msgstr "Le Cadeau Parfait"
+
+#: .\templates\base.html:25
+msgid "Production et livraison rapide"
+msgstr "Production et livraison rapide"
+
+#: .\templates\base.html:38
+#, python-format
+msgid "Paiement 100 %% sécurisé !"
+msgstr "Paiement 100 % sécurisé !"
+
+#: .\templates\base.html:52
+msgid "English"
+msgstr "Anglais"
+
+#: .\templates\base.html:55
+msgid "Français"
+msgstr "Français"
+
+#: .\templates\base.html:58
+msgid "Nederlands"
+msgstr "Néerlandais"
+
+#: .\templates\base.html:69
+msgid "La Boutique de Cadeaux"
+msgstr "La Boutique de Cadeaux"
+
+#: .\templates\base.html:75
+msgid "Accueil"
+msgstr "Accueil"
+
+#: .\templates\base.html:80
+msgid "A propos"
+msgstr "À propos"
+
+#: .\templates\base.html:85
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:90
+msgid "Nos Cadeaux"
+msgstr "Nos Cadeaux"
+
+#: .\templates\base.html:101
+msgid "Bienvenue"
+msgstr "Bienvenue"
+
+#: .\templates\base.html:107
+msgid "Mon panier"
+msgstr "Mon panier"
+
+#: .\templates\base.html:113
+msgid "Se déconnecter"
+msgstr "Se déconnecter"
+
+#: .\templates\base.html:117
+msgid "Se connecter"
+msgstr "Se connecter"
+
+#: .\templates\base.html:217
+msgid "Mon profile"
+msgstr "Mon profil"
+
+#: .\templates\base.html:225
+msgid "Mon compte"
+msgstr "Mon compte"
+
+#: .\templates\base.html:267
+msgid "S'inscrire"
+msgstr "S'inscrire"
+
+#: .\templates\base.html:270
+msgid "2025 The Perfect Gift. Tous droits réservés."
+msgstr "2025 Le Cadeau Parfait. Tous droits réservés."
+
+#: .\templates\store\about.html:11
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: .\templates\store\about.html:16
+msgid "À propos de nous"
+msgstr "À propos de nous"
+
+#: .\templates\store\about.html:19
+msgid "Bienvenue chez"
+msgstr "Bienvenue chez"
+
+#: .\templates\store\about.html:21
+msgid "où chaque cadeau est une véritable œuvre d'art,"
+msgstr "où chaque cadeau est une véritable œuvre d'art,"
+
+#: .\templates\store\about.html:22
+msgid "créée avec passion, soin et une touche personnelle unique."
+msgstr "créée avec passion, soin et une touche personnelle unique."
+
+#: .\templates\store\about.html:23
+msgid "Fondée par"
+msgstr "Fondée par"
+
+#: .\templates\store\about.html:24
+msgid "notre petite entreprise a vu le jour grâce à un amour profond pour"
+msgstr "notre petite entreprise a vu le jour grâce à un amour profond pour"
+
+#: .\templates\store\about.html:25
+msgid "l’artisanat et l’envie de créer des souvenirs inoubliables."
+msgstr "l’artisanat et l’envie de créer des souvenirs inoubliables."
+
+#: .\templates\store\about.html:26
+msgid "Chaque article que nous proposons est fabriqué à la main,"
+msgstr "Chaque article que nous proposons est fabriqué à la main,"
+
+#: .\templates\store\about.html:27
+msgid "avec une attention particulière aux détails,"
+msgstr "avec une attention particulière aux détails,"
+
+#: .\templates\store\about.html:28
+msgid "afin de garantir que chaque cadeau soit non seulement beau,"
+msgstr "afin de garantir que chaque cadeau soit non seulement beau,"
+
+#: .\templates\store\about.html:29
+msgid "mais aussi significatif."
+msgstr "mais aussi significatif."
+
+#: .\templates\store\about.html:30
+msgid "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgstr "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+
+#: .\templates\store\about.html:31
+msgid "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
+msgstr "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
+
+#: .\templates\store\about.html:32
+msgid "Notre engagement est simple :"
+msgstr "Notre engagement est simple :"
+
+#: .\templates\store\about.html:33
+msgid "vous offrir des créations faites maison,"
+msgstr "vous offrir des créations faites maison,"
+
+#: .\templates\store\about.html:34
+msgid "empreintes de soin et de passion,"
+msgstr "empreintes de soin et de passion,"
+
+#: .\templates\store\about.html:35
+msgid "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgstr "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+
+#: .\templates\store\about.html:36
+msgid "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
+msgstr "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
+
+#: .\templates\store\about.html:37
+msgid "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgstr "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+
+#: .\templates\store\about.html:38
+msgid "Merci de faire partie de cette aventure artisanale."
+msgstr "Merci de faire partie de cette aventure artisanale."
+
+#: .\templates\store\about.html:39
+msgid "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgstr "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+
+#: .\templates\store\about.html:40
+msgid "et de vous apporter un peu de magie dans vos gestes du quotidien."
+msgstr "et de vous apporter un peu de magie dans vos gestes du quotidien."
+
+#: .\templates\store\cart.html:8
+msgid "Prix unitaire:"
+msgstr "Prix unitaire :"
+
+#: .\templates\store\cart.html:28
+msgid "Supprimer le panier"
+msgstr "Supprimer le panier"
+
+#: .\templates\store\cart.html:34
+msgid "Mettre à jour le panier"
+msgstr "Mettre à jour le panier"
+
+#: .\templates\store\cart.html:40
+msgid "Montant total"
+msgstr "Montant total"
+
+#: .\templates\store\cart.html:44
+msgid "Sous-total:"
+msgstr "Sous-total :"
+
+#: .\templates\store\cart.html:48
+msgid "Livraison:"
+msgstr "Livraison :"
+
+#: .\templates\store\cart.html:52
+msgid "dès 5,00 €"
+msgstr "dès 5,00 €"
+
+#: .\templates\store\cart.html:56
+msgid "Total:"
+msgstr "Total :"
+
+#: .\templates\store\cart.html:64
+msgid "Procéder au paiement"
+msgstr "Procéder au paiement"
+
+#: .\store\forms.py:8
+msgid "Quantité"
+msgstr "Quantité"
+
+#: .\store\forms.py:14
+msgid "Supprimer l'article"
+msgstr "Supprimer l'article"
+
+#: .\templates\store\product-list.html:10
+msgid "Idée de cadeaux"
+msgstr "Idée de cadeaux"
+
+#: .\templates\store\product-list.html:14
+msgid "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
+msgstr "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
+
+#: .\templates\store\product-list.html:28
+msgid "No image available"
+msgstr "Pas d'image disponible"
+
+#: .\accounts\templates\accounts\login.html:12
+msgid "login"
+msgstr "connexion"
+
+#: .\accounts\templates\accounts\login.html:20
+msgid "Connexion"
+msgstr "Connexion"
+
+#: .\accounts\templates\accounts\login.html:24
+msgid "Bienvenue ! Veuillez vous connecter pour continuer."
+msgstr "Bienvenue ! Veuillez vous connecter pour continuer."
+
+#: .\accounts\templates\accounts\login.html:31
+msgid "Email"
+msgstr "Email"
+
+#: .\accounts\templates\accounts\login.html:38
+msgid "name@company.com"
+msgstr "nom@entreprise.com"
+
+#: .\accounts\templates\accounts\login.html:42
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\accounts\templates\accounts\login.html:49
+msgid "••••••••"
+msgstr "••••••••"
+
+#: .\accounts\templates\accounts\signup.html:12
+msgid "signup"
+msgstr "inscription"
+
+#: .\accounts\templates\accounts\signup.html:20
+msgid "Inscription"
+msgstr "Inscription"
+
+#: .\accounts\templates\accounts\signup.html:24
+msgid "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
+msgstr "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
+
+#: .\accounts\templates\accounts\signup.html:31
+msgid "Email"
+msgstr "Email"
+
+#: .\accounts\templates\accounts\signup.html:38
+msgid "name@company.com"
+msgstr "nom@entreprise.com"
+
+#: .\accounts\templates\accounts\signup.html:42
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\accounts\templates\accounts\signup.html:49
+msgid "••••••••"
+msgstr "••••••••"
+
+#: .\accounts\templates\accounts\profile.html:10
+msgid "Profile"
+msgstr "Profil"
+
+#: .\accounts\templates\accounts\profile.html:17
+msgid "Email"
+msgstr "Email"
+
+#: .\accounts\templates\accounts\profile.html:19
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\accounts\templates\accounts\profile.html:27
+msgid "btn-Enregistrer"
+msgstr "Enregistrer"

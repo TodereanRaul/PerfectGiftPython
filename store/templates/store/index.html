@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static i18n %} {% block content %}
 
 <section class="">
   <div
@@ -8,23 +8,23 @@
       <h1
         class="max-w-2xl mb-4 text-4xl font-semibold tracking-tight leading-none md:text-5xl"
       >
-        Offrez des cadeaux qui racontent une histoire
+        {% trans "Offrez des cadeaux qui racontent une histoire" %}
       </h1>
       <p class="max-w-2xl mb-6 font-light lg:mb-8 md:text-lg lg:text-xl">
-        Personnalisez chaque détail pour des souvenirs qui durent.
+        {% trans "Personnalisez chaque détail pour des souvenirs qui durent." %}
       </p>
 
       <a
         href="{% url 'store:product-list' %}"
         class="inline-flex items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkBlue hover:bg-darkestBlue text-blanc"
       >
-        Achetez vos cadeaux
+        {% trans "Achetez vos cadeaux" %}
       </a>
     </div>
     <div class="lg:mt-0 lg:col-span-5 flex mt-5">
       <img
         src="{% static 'images/gift-fleur.jpg'%}"
-        alt="mockup"
+        alt="{% trans 'mockup' %}"
         class="rounded-lg"
       />
     </div>

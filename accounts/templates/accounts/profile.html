@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %}
 
 <section class="min-h-min flex items-center justify-center">
   <div class="w-full max-w-4xl p-6 space-y-6">
@@ -6,7 +6,7 @@
       <h1
         class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-primary"
       >
-        Profile
+        {% trans 'Profile' %}
       </h1>
       <form method="POST" class="space-y-4 md:space-y-6">
         {% csrf_token %}
@@ -27,7 +27,7 @@
           type="submit"
           class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-white"
         >
-          Enregistrer
+          {% trans 'btn-Enregistrer' %}
         </button>
       </form>
     </div>

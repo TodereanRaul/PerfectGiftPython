@@ -1,11 +1,11 @@
-{% extends 'base.html' %}{% load static %} {% block content %} {% comment %}
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %} {% comment %}
 hero liste de produits {% endcomment %}
 <section class="py-10 px-4 md:px-0">
   <div class="flex flex-col items-center">
     <div class="relative mb-5 h-[40vh] md:h-[55vh] w-full overflow-hidden">
       <img
         src="{% static 'images/magical-moments (2).jpeg' %}"
-        alt="Idée de cadeaux"
+        alt="{% trans 'Idée de cadeaux' %}"
         class="w-full h-full object-cover object-center rounded-xl"
       />
       <div
@@ -13,13 +13,9 @@ hero liste de produits {% endcomment %}
       ></div>
     </div>
     <div class="mt-5">
-      <h1 class="text-3xl md:text-4xl text-primary mb-4">Idée de cadeaux</h1>
+      <h1 class="text-3xl md:text-4xl text-primary mb-4">{% trans 'Idée de cadeaux' %}</h1>
       <p class="text-base text-secondary">
-        Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre
-        collection de cadeaux personnalisés pour chaque occasion et chaque
-        personne qui compte. Chaque détail est pensé pour transformer vos
-        souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont
-        ceux qui racontent une histoire.
+        {% trans "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire." %}
       </p>
     </div>
   </div>
@@ -46,13 +42,14 @@ hero liste de produits {% endcomment %}
           <div
             class="h-full w-full bg-gray-200 flex items-center justify-center"
           >
-            <p class="text-gray-500">No image available</p>
+            <p class="text-gray-500">{% trans "No image available" %}</p>
           </div>
           {% endif %}
         </figure>
         <div class="card-body mt-4 bg-blanc text-center">
           <div class="flex justify-between">
             <p class="w-full text-primary text-p mb-2">{{ product.name }}</p>
+            {% comment %} <p class="w-full text-primary text-p mb-2">{{ product.description }}</p> {% endcomment %}
           </div>
         </div>
       </a>

@@ -1,0 +1,327 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-07 08:55+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\templates\base.html:8
+msgid "The Perfect Gift"
+msgstr "Het Perfecte Geschenk"
+
+#: .\templates\base.html:25
+msgid "Production et livraison rapide"
+msgstr "Snelle productie en levering"
+
+#: .\templates\base.html:38
+#, python-format
+msgid "Paiement 100 %% sécurisé !"
+msgstr "100% veilige betaling!"
+
+#: .\templates\base.html:52
+msgid "English"
+msgstr "Engels"
+
+#: .\templates\base.html:55
+msgid "Français"
+msgstr "Frans"
+
+#: .\templates\base.html:58
+msgid "Nederlands"
+msgstr "Nederlands"
+
+#: .\templates\base.html:69
+msgid "La Boutique de Cadeaux"
+msgstr "De Cadeauwinkel"
+
+#: .\templates\base.html:75
+msgid "Accueil"
+msgstr "Home"
+
+#: .\templates\base.html:80
+msgid "A propos"
+msgstr "Over ons"
+
+#: .\templates\base.html:85
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:90
+msgid "Nos Cadeaux"
+msgstr "Onze Cadeaus"
+
+#: .\templates\base.html:101
+msgid "Bienvenue"
+msgstr "Welkom"
+
+#: .\templates\base.html:107
+msgid "Mon panier"
+msgstr "Mijn winkelwagen"
+
+#: .\templates\base.html:113
+msgid "Se déconnecter"
+msgstr "Uitloggen"
+
+#: .\templates\base.html:117
+msgid "Se connecter"
+msgstr "Inloggen"
+
+#: .\templates\base.html:217
+msgid "Mon profile"
+msgstr "Mijn profiel"
+
+#: .\templates\base.html:225
+msgid "Mon compte"
+msgstr "Mijn account"
+
+#: .\templates\base.html:267
+msgid "S'inscrire"
+msgstr "Registreren"
+
+#: .\templates\base.html:270
+msgid "2025 The Perfect Gift. Tous droits réservés."
+msgstr "2025 Het Perfecte Geschenk. Alle rechten voorbehouden."
+
+#: .\templates\store\index.html:10
+msgid "Offrez des cadeaux qui racontent une histoire"
+msgstr "Geef cadeaus die een verhaal vertellen"
+
+#: .\store\templates\store\index.html:13
+msgid "Personnalisez chaque détail pour des souvenirs qui durent."
+msgstr "Personaliseer elk detail voor blijvende herinneringen"
+
+#: .\store\templates\store\index.html:18
+msgid "Achetez vos cadeaux"
+msgstr "Koop je cadeaus"
+
+#: .\store\templates\store\index.html:26
+msgid "mockup"
+msgstr "mockup"
+
+#: .\templates\store\about.html:11
+msgid "About Us"
+msgstr "Over ons"
+
+#: .\templates\store\about.html:16
+msgid "À propos de nous"
+msgstr "Over ons"
+
+#: .\templates\store\about.html:19
+msgid "Bienvenue chez"
+msgstr "Welkom bij"
+
+#: .\templates\store\about.html:21
+msgid "où chaque cadeau est une véritable œuvre d'art,"
+msgstr "waar elk cadeau een echt kunstwerk is,"
+
+#: .\templates\store\about.html:22
+msgid "créée avec passion, soin et une touche personnelle unique."
+msgstr "gemaakt met passie, zorg en een unieke persoonlijke touch."
+
+#: .\templates\store\about.html:23
+msgid "Fondée par"
+msgstr "Opgericht door"
+
+#: .\templates\store\about.html:24
+msgid "notre petite entreprise a vu le jour grâce à un amour profond pour"
+msgstr "ons kleine bedrijf is ontstaan uit een diepe liefde voor"
+
+#: .\templates\store\about.html:25
+msgid "l’artisanat et l’envie de créer des souvenirs inoubliables."
+msgstr "vakmanschap en de wens om onvergetelijke herinneringen te creëren."
+
+#: .\templates\store\about.html:26
+msgid "Chaque article que nous proposons est fabriqué à la main,"
+msgstr "Elk artikel dat we aanbieden is met de hand gemaakt,"
+
+#: .\templates\store\about.html:27
+msgid "avec une attention particulière aux détails,"
+msgstr "met bijzondere aandacht voor details,"
+
+#: .\templates\store\about.html:28
+msgid "afin de garantir que chaque cadeau soit non seulement beau,"
+msgstr "om ervoor te zorgen dat elk cadeau niet alleen mooi,"
+
+#: .\templates\store\about.html:29
+msgid "mais aussi significatif."
+msgstr "maar ook betekenisvol is."
+
+#: .\templates\store\about.html:30
+msgid "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgstr "Wij geloven dat gepersonaliseerde geschenken meer zijn dan alleen objecten:"
+
+#: .\templates\store\about.html:31
+msgid "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
+msgstr "het zijn boodschappen, emoties en herinneringen die we in ons hart dragen."
+
+#: .\templates\store\about.html:32
+msgid "Notre engagement est simple :"
+msgstr "Onze toewijding is eenvoudig:"
+
+#: .\templates\store\about.html:33
+msgid "vous offrir des créations faites maison,"
+msgstr "u handgemaakte creaties aanbieden,"
+
+#: .\templates\store\about.html:34
+msgid "empreintes de soin et de passion,"
+msgstr "doordrenkt met zorg en passie,"
+
+#: .\templates\store\about.html:35
+msgid "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgstr "zodat u momenten van geluk kunt bieden aan degenen van wie u houdt."
+
+#: .\templates\store\about.html:36
+msgid "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
+msgstr "Of het nu gaat om een verjaardag, een huwelijk, een geboorte of een andere speciale gelegenheid,"
+
+#: .\templates\store\about.html:37
+msgid "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgstr "we streven ernaar elk moment nog unieker en gedenkwaardiger te maken."
+
+#: .\templates\store\about.html:38
+msgid "Merci de faire partie de cette aventure artisanale."
+msgstr "Bedankt dat je deel uitmaakt van dit ambachtelijke avontuur."
+
+#: .\templates\store\about.html:39
+msgid "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgstr "Elke bestelling is voor ons een nieuwe kans om onze passie te delen"
+
+#: .\templates\store\about.html:40
+msgid "et de vous apporter un peu de magie dans vos gestes du quotidien."
+msgstr "en een beetje magie in uw dagelijkse handelingen te brengen."
+
+#: .\templates\store\cart.html:8
+msgid "Prix unitaire:"
+msgstr "Eenheidsprijs:"
+
+#: .\templates\store\cart.html:28
+msgid "Supprimer le panier"
+msgstr "Winkelwagen verwijderen"
+
+#: .\templates\store\cart.html:34
+msgid "Mettre à jour le panier"
+msgstr "Winkelwagen bijwerken"
+
+#: .\templates\store\cart.html:40
+msgid "Montant total"
+msgstr "Totaalbedrag"
+
+#: .\templates\store\cart.html:44
+msgid "Sous-total:"
+msgstr "Subtotaal:"
+
+#: .\templates\store\cart.html:48
+msgid "Livraison:"
+msgstr "Verzending:"
+
+#: .\templates\store\cart.html:52
+msgid "dès 5,00 €"
+msgstr "vanaf 5,00 €"
+
+#: .\templates\store\cart.html:56
+msgid "Total:"
+msgstr "Totaal:"
+
+#: .\templates\store\cart.html:64
+msgid "Procéder au paiement"
+msgstr "Doorgaan naar betalen"
+
+#: .\store\forms.py:8
+msgid "Quantité"
+msgstr "Aantal"
+
+#: .\store\forms.py:14
+msgid "Supprimer l'article"
+msgstr "Verwijder item"
+
+#: .\templates\store\product-list.html:10
+msgid "Idée de cadeaux"
+msgstr "Cadeau-ideeën"
+
+#: .\templates\store\product-list.html:14
+msgid "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
+msgstr "Geef meer dan alleen een cadeau, creëer een emotie. Ontdek onze collectie gepersonaliseerde cadeaus voor elke gelegenheid en elke belangrijke persoon. Elk detail is ontworpen om uw herinneringen om te zetten in onvergetelijke momenten, want de mooiste cadeaus zijn die met een verhaal."
+
+#: .\templates\store\product-list.html:28
+msgid "No image available"
+msgstr "Geen afbeelding beschikbaar"
+
+#: .\accounts\templates\accounts\login.html:12
+msgid "login"
+msgstr "inloggen"
+
+#: .\accounts\templates\accounts\login.html:20
+msgid "Connexion"
+msgstr "Inloggen"
+
+#: .\accounts\templates\accounts\login.html:24
+msgid "Bienvenue ! Veuillez vous connecter pour continuer."
+msgstr "Welkom! Log in om door te gaan."
+
+#: .\accounts\templates\accounts\login.html:31
+msgid "Email"
+msgstr "E-mail"
+
+#: .\accounts\templates\accounts\login.html:38
+msgid "name@company.com"
+msgstr "naam@bedrijf.com"
+
+#: .\accounts\templates\accounts\login.html:42
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: .\accounts\templates\accounts\login.html:49
+msgid "••••••••"
+msgstr "••••••••"
+
+#: .\accounts\templates\accounts\signup.html:12
+msgid "signup"
+msgstr "aanmelden"
+
+#: .\accounts\templates\accounts\signup.html:20
+msgid "Inscription"
+msgstr "Aanmelden"
+
+#: .\accounts\templates\accounts\signup.html:24
+msgid "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
+msgstr "Meld je nu aan en profiteer van onze exclusieve diensten."
+
+#: .\accounts\templates\accounts\signup.html:31
+msgid "Email"
+msgstr "E-mail"
+
+#: .\accounts\templates\accounts\signup.html:38
+msgid "name@company.com"
+msgstr "naam@bedrijf.com"
+
+#: .\accounts\templates\accounts\signup.html:42
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: .\accounts\templates\accounts\profile.html:10
+msgid "Profile"
+msgstr "Profiel"
+
+#: .\accounts\templates\accounts\profile.html:17
+msgid "Email"
+msgstr "E-mail"
+
+#: .\accounts\templates\accounts\profile.html:19
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: .\accounts\templates\accounts\profile.html:27
+msgid "btn-Enregistrer"
+msgstr "Opslaan"

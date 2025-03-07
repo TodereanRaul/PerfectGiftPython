@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from store.models import Order
 
 class OrderForm(forms.ModelForm):
@@ -6,12 +7,12 @@ class OrderForm(forms.ModelForm):
         choices=[(i, i) for i in range(1, 11)],
         widget=forms.Select(attrs={
             'class': 'border border-gray-300 rounded-md w-7', 
-
-        })
+        }),
+        label=_("Quantité")
     )
     delete = forms.BooleanField(
         required=False, 
-        label="Supprimer l'article", 
+        label=_("Supprimer l'article"), 
         initial=False,
         widget=forms.CheckboxInput(attrs={
             'class': 'h-5 w-5  border-gray-300 rounded text-primary ', 
