@@ -162,7 +162,7 @@
             <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
               <li><a href="{% url 'index' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Accueil" %}</a></li>
               <li><a href="{% url 'store:about' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "A propos" %}</a></li>
-              <li><a href="{% url 'accounts:profile' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li>
+              <li><a href="{% url 'store:contact' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li>
               <li><a href="{% url 'store:product-list' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Nos Cadeaux" %}</a></li>
             </ul>
           </div>
@@ -367,7 +367,7 @@
               <a href="{% url 'store:product-list' %}" class="">{%trans "Nos Cadeaux"%}</a>
             </li>
             <li>
-              <a href="{% url 'accounts:profile' %}" class="">{%trans "Contact"%}</a>
+              <a href="{% url 'store:contact' %}" class="">{%trans "Contact"%}</a>
             </li>
           </ul>
         </div>
@@ -375,7 +375,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="mx-auto max-w-screen-xl">
+    <main class="">
       {% block content %} {% endblock %}
     </main>
 

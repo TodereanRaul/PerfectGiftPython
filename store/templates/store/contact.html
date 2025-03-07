@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<div class="flex items-center justify-center mx-auto max-w-screen-xl">
+    <div class="py-8 px-4 md:px-0 w-full">
+        <h2 class="text-3xl md:text-4xl text-primary mb-4">{% trans "Contactez-nous" %}</h2>
+        <p class="text-lg leading-relaxed text-secondary mb-6">
+            {% trans "Nous utilisons une approche agile pour tester les hypothèses et répondre aux besoins de votre audience tôt et fréquemment." %}
+        </p>
+
+        <!-- Formulaire de contact -->
+        <div class="grid grid-cols-1 md:grid-cols-2 my-8">
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-primary mb-1">{% trans "Prénom" %}</label>
+                    <input type="text" class="w-full p-3 bg-blanc text-primary rounded-lg" placeholder="{% trans "Bonnie" %}">
+                </div>
+                <div>
+                    <label class="block text-primary mb-1">{% trans "Nom" %}</label>
+                    <input type="text" class="w-full p-3 bg-blanc text-primary rounded-lg" placeholder="{% trans "Green" %}">
+                </div>
+                <div>
+                    <label class="block text-primary mb-1">{% trans "Votre email" %}</label>
+                    <input type="email" class="w-full p-3 bg-blanc text-primary rounded-lg" placeholder="{% trans "name@flowbite.com" %}">
+                </div>
+                <div>
+                    <label class="block text-primary mb-1">{% trans "Numéro de téléphone" %}</label>
+                    <input type="tel" class="w-full p-3 bg-blanc text-primary rounded-lg" placeholder="{% trans "+12 345 6789" %}">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-primary mb-1">{% trans "Votre message" %}</label>
+                    <textarea class="w-full p-3 h-32 bg-blanc text-primary rounded-lg border border-gray-600 focus:outline-none focus:border-blue-400" placeholder="{% trans "Laissez un commentaire..." %}"></textarea>
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition">
+                        {% trans "Envoyer le message" %}
+                    </button>
+                </div>
+            </form>
+
+            <!-- Informations de contact -->
+            <div class="mt-6 text-center">
+                <!-- Add your contact information here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -160,11 +160,14 @@ msgid "mais aussi significatif."
 msgstr "but also meaningful."
 
 #: .\templates\store\about.html:30
-msgid "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
+msgid ""
+"Nous croyons que les cadeaux personnalisés sont plus que de simples objets :"
 msgstr "We believe that personalized gifts are more than just objects:"
 
 #: .\templates\store\about.html:31
-msgid "ce sont des messages, des émotions et des souvenirs que l’on porte dans son cœur."
+msgid ""
+"ce sont des messages, des émotions et des souvenirs que l’on porte dans son "
+"cœur."
 msgstr "they are messages, emotions, and memories that we carry in our hearts."
 
 #: .\templates\store\about.html:32
@@ -180,15 +183,21 @@ msgid "empreintes de soin et de passion,"
 msgstr "imbued with care and passion,"
 
 #: .\templates\store\about.html:35
-msgid "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
+msgid ""
+"pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez."
 msgstr "so that you can offer moments of happiness to those you love."
 
 #: .\templates\store\about.html:36
-msgid "Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre occasion spéciale,"
-msgstr "Whether it's for a birthday, a wedding, a birth, or any other special occasion,"
+msgid ""
+"Que ce soit pour un anniversaire, un mariage, une naissance ou toute autre "
+"occasion spéciale,"
+msgstr ""
+"Whether it's for a birthday, a wedding, a birth, or any other special "
+"occasion,"
 
 #: .\templates\store\about.html:37
-msgid "nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
+msgid ""
+"nous nous efforçons de rendre chaque moment encore plus unique et mémorable."
 msgstr "we strive to make each moment even more unique and memorable."
 
 #: .\templates\store\about.html:38
@@ -196,7 +205,8 @@ msgid "Merci de faire partie de cette aventure artisanale."
 msgstr "Thank you for being part of this artisanal adventure."
 
 #: .\templates\store\about.html:39
-msgid "Chaque commande est pour nous une nouvelle chance de partager notre passion"
+msgid ""
+"Chaque commande est pour nous une nouvelle chance de partager notre passion"
 msgstr "Each order is a new opportunity for us to share our passion"
 
 #: .\templates\store\about.html:40
@@ -252,8 +262,17 @@ msgid "Idée de cadeaux"
 msgstr "Gift ideas"
 
 #: .\templates\store\product-list.html:14
-msgid "Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. Chaque détail est pensé pour transformer vos souvenirs en moments inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une histoire."
-msgstr "Give more than just a gift, create an emotion. Explore our collection of personalized gifts for every occasion and every important person. Every detail is designed to turn your memories into unforgettable moments, because the best gifts are those that tell a story."
+msgid ""
+"Offrez bien plus qu'un cadeau, créez une émotion. Explorez notre collection "
+"de cadeaux personnalisés pour chaque occasion et chaque personne qui compte. "
+"Chaque détail est pensé pour transformer vos souvenirs en moments "
+"inoubliables, parce que les plus beaux cadeaux sont ceux qui racontent une "
+"histoire."
+msgstr ""
+"Give more than just a gift, create an emotion. Explore our collection of "
+"personalized gifts for every occasion and every important person. Every "
+"detail is designed to turn your memories into unforgettable moments, because "
+"the best gifts are those that tell a story."
 
 #: .\templates\store\product-list.html:28
 msgid "No image available"
@@ -272,18 +291,24 @@ msgid "Bienvenue ! Veuillez vous connecter pour continuer."
 msgstr "Welcome! Please log in to continue."
 
 #: .\accounts\templates\accounts\login.html:31
+#: .\accounts\templates\accounts\signup.html:31
+#: .\accounts\templates\accounts\profile.html:17
 msgid "Email"
 msgstr "Email"
 
 #: .\accounts\templates\accounts\login.html:38
+#: .\accounts\templates\accounts\signup.html:38
 msgid "name@company.com"
 msgstr "name@company.com"
 
 #: .\accounts\templates\accounts\login.html:42
+#: .\accounts\templates\accounts\signup.html:42
+#: .\accounts\templates\accounts\profile.html:19
 msgid "Password"
 msgstr "Password"
 
 #: .\accounts\templates\accounts\login.html:49
+#: .\accounts\templates\accounts\signup.html:49
 msgid "••••••••"
 msgstr "••••••••"
 
@@ -299,34 +324,66 @@ msgstr "Sign up"
 msgid "Rejoignez-nous dès maintenant et profitez de nos services exclusifs."
 msgstr "Join us now and enjoy our exclusive services."
 
-#: .\accounts\templates\accounts\signup.html:31
-msgid "Email"
-msgstr "Email"
-
-#: .\accounts\templates\accounts\signup.html:38
-msgid "name@company.com"
-msgstr "name@company.com"
-
-#: .\accounts\templates\accounts\signup.html:42
-msgid "Password"
-msgstr "Password"
-
-#: .\accounts\templates\accounts\signup.html:49
-msgid "••••••••"
-msgstr "••••••••"
-
 #: .\accounts\templates\accounts\profile.html:10
 msgid "Profile"
 msgstr "Profile"
 
-#: .\accounts\templates\accounts\profile.html:17
-msgid "Email"
-msgstr "Email"
-
-#: .\accounts\templates\accounts\profile.html:19
-msgid "Password"
-msgstr "Password"
-
 #: .\accounts\templates\accounts\profile.html:27
 msgid "btn-Enregistrer"
 msgstr "Save"
+
+#: .\templates\store\contact.html:8
+msgid "Contactez-nous"
+msgstr "Contact us"
+
+#: .\templates\store\contact.html:11
+msgid ""
+"Nous utilisons une approche agile pour tester les hypothèses et répondre aux "
+"besoins de votre audience tôt et fréquemment."
+msgstr ""
+"We use an agile approach to test hypotheses and meet your audience's needs "
+"early and often."
+
+#: .\templates\store\contact.html:17
+msgid "Prénom"
+msgstr "First name"
+
+#: .\templates\store\contact.html:19
+msgid "Bonnie"
+msgstr "Bonnie"
+
+#: .\templates\store\contact.html:22
+msgid "Nom"
+msgstr "Last name"
+
+#: .\templates\store\contact.html:24
+msgid "Green"
+msgstr "Green"
+
+#: .\templates\store\contact.html:27
+msgid "Votre email"
+msgstr "Your email"
+
+#: .\templates\store\contact.html:29
+msgid "name@flowbite.com"
+msgstr "name@flowbite.com"
+
+#: .\templates\store\contact.html:32
+msgid "Numéro de téléphone"
+msgstr "Phone number"
+
+#: .\templates\store\contact.html:34
+msgid "+12 345 6789"
+msgstr "+12 345 6789"
+
+#: .\templates\store\contact.html:37
+msgid "Votre message"
+msgstr "Your message"
+
+#: .\templates\store\contact.html:39
+msgid "Laissez un commentaire..."
+msgstr "Leave a comment..."
+
+#: .\templates\store\contact.html:42
+msgid "Envoyer le message"
+msgstr "Send message"
