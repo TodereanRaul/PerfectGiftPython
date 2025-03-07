@@ -156,59 +156,19 @@
                 href="{% url 'index' %}"
                 class="flex items-center space-x-3 rtl:space-x-reverse"
               >
-                <img
-                  src="{% static 'images/logo-transparent.png' %}"
-                  class="h-20"
-                  alt="La Boutique de Cadeaux"
-                />
+              <img src="{% static 'images/logo-transparent.png' %}" class="h-20" alt="{% trans 'La Boutique de Cadeaux' %}" />
               </a>
             </div>
-            <ul
-              class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center"
-            >
-              <li>
-                <a
-                  href="{% url 'index' %}"
-                  title=""
-                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
-                >
-                  Accueil
-                </a>
-              </li>
-              <li class="shrink-0">
-                <a
-                  href="{% url 'store:about' %}"
-                  title=""
-                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
-                >
-                  A propos
-                </a>
-              </li>
-              <li class="shrink-0">
-                <a
-                  href="{% url 'accounts:profile' %}"
-                  title=""
-                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
-                >
-                  Contact
-                </a>
-              </li>
-              <li class="shrink-0">
-                <a
-                  href="{% url 'store:product-list' %}"
-                  title=""
-                  class="flex text-base font-medium hover:text-accent duration-100 ease-in"
-                >
-                  Nos Cadeaux
-                </a>
-              </li>
+            <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
+              <li><a href="{% url 'index' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Accueil" %}</a></li>
+              <li><a href="{% url 'store:about' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "A propos" %}</a></li>
+              <li><a href="{% url 'accounts:profile' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li>
+              <li><a href="{% url 'store:product-list' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Nos Cadeaux" %}</a></li>
             </ul>
           </div>
           <div class="flex items-center lg:space-x-2">
             {% if user.is_authenticated %}
-            <span class="mr-4 font-medium text-secondary hidden md:block"
-              >Bienvenue, {{ user.email }}</span
-            >
+            <span class="mr-4 font-medium text-secondary hidden md:block">{% trans "Bienvenue" %}, {{ user.email }}</span>
             {% if user.cart and not user.cart.ordered %}
             <a
               href="{% url 'store:cart' %}"
@@ -232,7 +192,7 @@
                 />
               </svg>
               <span class="hidden sm:flex"
-                >Mon panier ({{ user.cart.orders.count }})</span
+                >{% trans "Mon panier" %} ({{ user.cart.orders.count }})</span
               >
             </a>
             {% endif %}
@@ -286,7 +246,7 @@
                     href="{% url 'accounts:profile' %}"
                     title=""
                     class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >Mon profile</a
+                    >{%trans "Mon profile"%}</a
                   >
                 </li>
                 <li>
@@ -294,7 +254,7 @@
                     href="{% url 'accounts:signout' %}"
                     title=""
                     class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >Se déconnecter</a
+                    >{%trans "Se déconnecter"%}</a
                   >
                 </li>
               </ul>
@@ -321,7 +281,7 @@
                   d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                 />
               </svg>
-              Account
+              {%trans "Mon compte"%}
               <svg
                 class="w-4 h-4 ms-1"
                 aria-hidden="true"
@@ -350,7 +310,7 @@
                     href="{% url 'accounts:signup' %}"
                     title=""
                     class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >S'inscrire</a
+                    >{%trans "S'inscrire"%}</a
                   >
                 </li>
                 <li>
@@ -358,7 +318,7 @@
                     href="{% url 'accounts:login' %}"
                     title=""
                     class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >Se connecter</a
+                    >{%trans "Se connecter"%}</a
                   >
                 </li>
               </ul>
@@ -398,16 +358,16 @@
         >
           <ul class="text-primary text-base font-medium space-y-3">
             <li>
-              <a href="{% url 'index' %}" class="">Accueil</a>
+              <a href="{% url 'index' %}" class="">{%trans "Acceuil"%}</a>
             </li>
             <li>
-              <a href="{% url 'store:about' %}" class="">A propos</a>
+              <a href="{% url 'store:about' %}" class="">{%trans "A propos"%}</a>
             </li>
             <li>
-              <a href="{% url 'store:product-list' %}" class="">Nos Cadeaux</a>
+              <a href="{% url 'store:product-list' %}" class="">{%trans "Nos Cadeaux"%}</a>
             </li>
             <li>
-              <a href="{% url 'accounts:profile' %}" class="">Contact</a>
+              <a href="{% url 'accounts:profile' %}" class="">{%trans "Contact"%}</a>
             </li>
           </ul>
         </div>
@@ -422,7 +382,7 @@
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-4">
       <div class="container mx-auto text-center text-sm">
-        &copy; 2025 The Perfect Gift. Tous droits réservés.
+        &copy;{%trans "2025 The Perfect Gift. Tous droits réservés."%} 
       </div>
     </footer>
 

@@ -1468,6 +1468,10 @@ input[type="range"]::-ms-fill-lower {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .flex {
   display: flex;
 }
@@ -1599,6 +1603,10 @@ input[type="range"]::-ms-fill-lower {
 
 .max-w-4xl {
   max-width: 56rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
 }
 
 .max-w-screen-xl {
@@ -1854,6 +1862,11 @@ input[type="range"]::-ms-fill-lower {
   background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
 }
 
+.bg-green-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
+}
+
 .bg-lightBlue {
   --tw-bg-opacity: 1;
   background-color: rgb(214 226 233 / var(--tw-bg-opacity, 1));
@@ -1939,6 +1952,11 @@ input[type="range"]::-ms-fill-lower {
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .py-0\.5 {
@@ -2105,6 +2123,11 @@ input[type="range"]::-ms-fill-lower {
   color: rgb(55 65 81 / var(--tw-text-opacity, 1));
 }
 
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity, 1));
+}
+
 .text-primary {
   --tw-text-opacity: 1;
   color: rgb(85 76 68 / var(--tw-text-opacity, 1));
@@ -2242,6 +2265,11 @@ input[type="range"]::-ms-fill-lower {
 .hover\:bg-darkestBlue:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(127 174 204 / var(--tw-bg-opacity, 1));
+}
+
+.hover\:bg-green-700:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(21 128 61 / var(--tw-bg-opacity, 1));
 }
 
 .hover\:bg-rose:hover {
