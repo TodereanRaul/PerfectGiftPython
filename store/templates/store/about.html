@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %}
+
+<section class="py-0 md:py-8 flex items-center justify-center relative">
+  <img
+    src="{% static 'images/about.png' %}"
+    alt="{% trans 'About Us' %}"
+    class="hidden md:flex absolute top-0 left-0 w-60 h-60 object-cover rounded-full"
+  />
+  <div class="max-w-4xl mx-auto p-8 md:p-0">
+    <h1 class="text-3xl md:text-4xl text-primary mb-8 text-center">
+      {% trans 'À propos de nous' %}
+    </h1>
+    <p class="text-lg leading-relaxed text-secondary mb-4">
+      <span>{% trans 'Bienvenue chez' %}</span>
+      <span class="text-primary font-semibold">The Perfect Gift</span>,
+      <span>{% trans "où chaque cadeau est une véritable œuvre d'art," %}</span>
+      <span>{% trans "créée avec passion," %}</span>
+      <span>{% trans "soin et une touche personnelle unique." %}</span>
+      <span>{% trans "Fondée par" %}</span>
+      <span class="text-primary font-semibold">Cornelia V.</span>,
+      <span>{% trans "notre petite entreprise a vu le jour grâce à un amour profond pour" %}</span>
+      <span>{% trans "l’artisanat et l’envie de créer des souvenirs inoubliables." %}</span>
+    </p>
+    <p class="text-lg leading-relaxed text-secondary mb-4">
+      <span>{% trans "Chaque article que nous proposons est fabriqué à la main," %}</span>
+      <span>{% trans "avec une attention particulière aux détails," %}</span>
+      <span>{% trans "afin de garantir que chaque cadeau soit non seulement beau," %}</span>
+      <span>{% trans "mais aussi significatif." %}</span>
+      <span>{% trans "Nous croyons que les cadeaux personnalisés sont plus que de simples objets :" %}</span>
+      <span>{% trans "ce sont des messages," %}</span>
+      <span>{% trans "des émotions et des souvenirs que l’on porte dans son cœur." %}</span>
+    </p>
+    <p class="text-lg leading-relaxed text-secondary mb-4">
+      <span>{% trans "Notre engagement est simple :" %}</span>
+      <span>{% trans "vous offrir des créations faites maison," %}</span>
+      <span>{% trans "empreintes de soin et de passion," %}</span>
+      <span>{% trans "pour que vous puissiez offrir des moments de bonheur à ceux que vous aimez." %}</span>
+      <span>{% trans "Que ce soit pour un anniversaire," %}</span>
+      <span>{% trans "un mariage," %}</span>
+      <span>{% trans "une naissance ou toute autre occasion spéciale," %}</span>
+      <span>{% trans "nous nous efforçons de rendre chaque moment encore plus unique et mémorable." %}</span>
+    </p>
+    <p class="text-lg leading-relaxed text-secondary mb-4">
+      <span>{% trans "Merci de faire partie de cette aventure artisanale." %}</span>
+      <span>{% trans "Chaque commande est pour nous une nouvelle chance de partager notre passion" %}</span>
+      <span>{% trans "et de vous apporter un peu de magie dans vos gestes du quotidien." %}</span>
+    </p>
+  </div>
+</section>
+
+{% endblock %}

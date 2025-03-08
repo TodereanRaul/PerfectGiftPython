@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% load static %} {% load i18n %} {% block content %}
+
+<section class="min-h-min flex items-center justify-center">
+  <div class="w-full max-w-4xl p-6 space-y-6">
+    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+      <h1
+        class="text-xl font-bold leading-tight tracking-tight md:text-2xl text-primary"
+      >
+        {% trans 'Profile' %}
+      </h1>
+      <form method="POST" class="space-y-4 md:space-y-6">
+        {% csrf_token %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>{{ form.first_name.label_tag }} {{ form.first_name }}</div>
+          <div>{{ form.last_name.label_tag }} {{ form.last_name }}</div>
+        </div>
+        <div>{{ form.email.label_tag }} {{ form.email }}</div>
+        <div>{{ form.password.label_tag }} {{ form.password }}</div>
+        {% if messages %}
+        <ul class="list-disc list-inside">
+          {% for message in messages %}
+          <li class="text-red-500">{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        <button
+          type="submit"
+          class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-white"
+        >
+          {% trans 'btn-Enregistrer' %}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

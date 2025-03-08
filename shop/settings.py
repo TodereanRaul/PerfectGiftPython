@@ -12,8 +12,19 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import environ
+
+# Création d'une instance d'Environnement
+env = environ.Env()
+
+from django.conf.global_settings import AUTH_USER_MODEL
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Lecture des variables d'environnement depuis le fichier .env situé à la racine du projet
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -37,17 +48,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store'
+    'modeltranslation',
+    'widget_tweaks',
+    'store',
+    'accounts',
+    'ckeditor',
+    'tailwind',
+    'theme',
+    'django_browser_reload'
 ]
+
+# setup for tailwind
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
 
 ROOT_URLCONF = 'shop.urls'
@@ -55,7 +82,7 @@ ROOT_URLCONF = 'shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,14 +131,28 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('fr', _('Français')),
+    ('nl', _('Nederlands')),
+]
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+# Path for translations files
+LOCALE_PATHS = [
+    BASE_DIR / 'locale', 
+]
 
+# Ignore les fichiers et dossiers indésirables pendant la traduction
+XGETTEXT_OPTIONS = '--keyword=gettext_noop --keyword=gettext_lazy --keyword=ngettext_lazy:1,2 --keyword=pgettext:1c,2 --keyword=npgettext:1c,2,3 --from-code=UTF-8'
+# Exclure certains chemins automatiquement
+GETTEXT_EXCLUDED_DIRS = ['node_modules', 'env', 'venv', '.git', '__pycache__']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -122,3 +163,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+MEDIA_URL = "/media/" #URL dans le navigateur
+MEDIA_ROOT = BASE_DIR / "media"
+AUTH_USER_MODEL = "accounts.Shopper"
+STRIPE_API_KEY = env("STRIPE_API_KEY")
