@@ -1,6 +1,7 @@
 from http.client import HTTPS_PORT
 from importlib.metadata import metadata
-from pprint import pprint
+
+from django.contrib.auth.decorators import login_required
 
 from django.forms import modelformset_factory
 import stripe
@@ -69,7 +70,7 @@ def delete_cart(request):
     
     return redirect("index")
 
-
+@login_required
 def cart(request):
     orderes = Order.objects.filter(user=request.user, ordered=False) # get orders for the user
     if orderes.count() == 0:
@@ -133,7 +134,7 @@ def create_checkout_session(request):
     except Exception as e:
         return JsonResponse({"error": str(e)}, status=500) 
 
-endpoint_secret = 'whsec_517e4430b4ef6cd82c3dd1bc5875745dc3eed84b823491b73760bb05adf8288e'
+endpoint_secret = 'whsec_f16fb571c2acb7a31abd102a6f909dd85f54ef5d7d2d91866b420215b47751af'
 
 def checkout_success(request):
     return render(request, 'store/success.html')
