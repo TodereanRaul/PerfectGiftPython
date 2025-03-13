@@ -27,8 +27,7 @@ msgid "Production et livraison rapide"
 msgstr "Production et livraison rapide"
 
 #: .\templates\base.html:38
-#, python-format
-msgid "Paiement 100 %% sécurisé !"
+msgid "Paiement 100 % sécurisé !"
 msgstr "Paiement 100 % sécurisé !"
 
 #: .\templates\base.html:52
@@ -79,6 +78,38 @@ msgstr "Se déconnecter"
 msgid "Se connecter"
 msgstr "Se connecter"
 
+#: .\templates\base.html:130
+msgid "Shop"
+msgstr "Boutique"
+
+#: .\templates\base.html:135
+msgid "Categories"
+msgstr "Catégories"
+
+#: .\templates\base.html:140
+msgid "About"
+msgstr "À propos"
+
+#: .\templates\base.html:145
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:150
+msgid "Cart"
+msgstr "Panier"
+
+#: .\templates\base.html:155
+msgid "Login"
+msgstr "Connexion"
+
+#: .\templates\base.html:160
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: .\templates\base.html:165
+msgid "Profile"
+msgstr "Profil"
+
 #: .\templates\base.html:217
 msgid "Mon profile"
 msgstr "Mon profil"
@@ -94,6 +125,18 @@ msgstr "S'inscrire"
 #: .\templates\base.html:270
 msgid "2025 The Perfect Gift. Tous droits réservés."
 msgstr "2025 The Perfect Gift. Tous droits réservés."
+
+#: .\templates\base.html:290
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:300
+msgid "Follow us"
+msgstr "Suivez-nous"
+
+#: .\templates\base.html:320
+msgid "The Perfect Gift. Tous droits réservés."
+msgstr "The Perfect Gift. Tous droits réservés."
 
 #: .\templates\store\about.html:11
 msgid "About Us"
