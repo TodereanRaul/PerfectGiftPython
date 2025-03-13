@@ -103,8 +103,12 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Everduolol$ThePerfetGiftTest',
+        'USER': 'Everduolol',
+        'PASSWORD': 'ThePerfectGiftTest',
+        'HOST': 'Everduolol.mysql.pythonanywhere-services.com',
+        'PORT': '3306',
     }
 }
 
@@ -157,13 +161,15 @@ GETTEXT_EXCLUDED_DIRS = ['node_modules', 'env', 'venv', '.git', '__pycache__']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+# Static files config (imgs, ..)
 STATIC_URL = 'static/'
+STATIC_ROOT = (BASE_DIR / "staticfiles")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = "/media/" #URL dans le navigateur
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 AUTH_USER_MODEL = "accounts.Shopper"
 STRIPE_API_KEY = env("STRIPE_API_KEY")
