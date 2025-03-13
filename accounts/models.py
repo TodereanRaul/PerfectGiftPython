@@ -27,6 +27,7 @@ class Shopper(AbstractUser):
     username = None
     email = models.EmailField(max_length=240, unique=True)
     stripe_id = models.CharField(max_length=240, blank=True)
+    last_transaction_trace_id = models.CharField(max_length=240, blank=True, null=True)  
 
     # Mandatory fields for login
     USERNAME_FIELD = 'email'

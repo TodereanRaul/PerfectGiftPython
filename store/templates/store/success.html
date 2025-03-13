@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
 {% load i18n %}
+
 {% block content %}
-
-<section class="min-h-screen flex items-center justify-center ">
-  <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-    <h1 class="text-2xl font-bold text-green-600 mb-4">{% trans 'Votre paiement a été accepté!' %}</h1>
-    <p class="text-gray-700 mb-6">{% trans "Vous recevrez votre colis d\'ici 2 semaines." %}</p>
+<section class="max-w-screen-xl px-4 mx-auto my-10">
+  <div class="grid grid-cols-1 md:grid-cols-2 place-items-center gap-8">
+    <div class="md:p-8 p-0 flex justify-center">
+      <div class="text-center">
+          <svg class="w-16 h-16 text-green-500 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" d="M12 2a10 10 0 1 1-10 10A10 10 0 0 1 12 2zm-1 13.59l-3.29-3.3a1 1 0 1 0-1.42 1.42l4 4a1 1 0 0 0 1.42 0l8-8a1 1 0 0 0-1.42-1.42L11 13.59z" clip-rule="evenodd"/>
+          </svg>
+          <h1 class="text-2xl font-bold text-green-600 mb-4">{% trans 'Votre paiement a été accepté!' %}</h1>
+      </div>
+    </div>
+    <div class="md:p-6 p-2 space-y-4">
+      <h1 class="text-xl font-bold text-center text-darkBlue pb-10">📢 Action requise pour votre commande !</h1>
+      <p class="text-primary">Cher(e) client,</p>
+      <p class="text-primary">Pour finaliser la personnalisation de vos produits, nous avons besoin de recevoir votre texte ou vos photos à intégrer.</p>
+      <p class="text-primary">Merci de nous les envoyer par e-mail à :</p>
+      <p class="text-center text-lg font-semibold text-darkBlue"><a href="mailto:the.perfect.gift.antwerpen@gmail.com" class="hover:underline">the.perfect.gift.antwerpen@gmail.com</a></p>
+      <div class="p-4 bg-blanc border-x-4 border-darkRose rounded-md">
+          <p class="font-semibold text-primary">⚠️ N’oubliez pas d’inclure :</p>
+          <ul class="list-disc list-inside text-primary space-y-2">
+              <li>📍 <strong>Votre adresse de livraison: </strong> {{ shipping_address.name }}, {{ shipping_address.address_1 }} {{ shipping_address.address_2 }}, {{ shipping_address.city }} {{ shipping_address.postal_code }}, {{ shipping_address.get_country_display }}</li>
+              <li>📧 <strong>L’adresse e-mail avec laquelle vous vous êtes connecté(e) sur notre site</strong></li>
+          </ul>
+      </div>
+      <p>Dès réception, nous lancerons la production de votre commande !</p>
+      <p class="text-center text-primary pt-10">À très bientôt,<br><strong>The Perfect Gift</strong></p>
   </div>
+</div>
+    
 </section>
-
 {% endblock %}

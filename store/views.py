@@ -1,5 +1,6 @@
 from http.client import HTTPS_PORT
 from importlib.metadata import metadata
+from venv import logger
 
 from django.contrib.auth.decorators import login_required
 
@@ -137,7 +138,22 @@ def create_checkout_session(request):
 endpoint_secret = 'whsec_f16fb571c2acb7a31abd102a6f909dd85f54ef5d7d2d91866b420215b47751af'
 
 def checkout_success(request):
-    return render(request, 'store/success.html')
+    user = request.user
+
+    # Get the user's last order
+    # orders = Order.objects.filter(user=user, ordered=True)
+
+    # Get the user's shipping address
+    shipping_address = ShippingAddress.objects.filter(user=user).last()
+
+    context = {
+        # "order": orders,
+        "shipping_address": shipping_address,
+        
+    }
+
+    return render(request, "store/success.html", context)
+
 
 @csrf_exempt
 def stripe_webhook(request):
@@ -169,6 +185,7 @@ def stripe_webhook(request):
         complete_order(data=data, user=user)
         save_shipping_address(data=data, user=user)
         return HttpResponse(status=200)
+    
 
     return HttpResponse(status=200)
 
