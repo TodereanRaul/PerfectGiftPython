@@ -79,6 +79,38 @@ msgstr "Uitloggen"
 msgid "Se connecter"
 msgstr "Inloggen"
 
+#: .\templates\base.html:130
+msgid "Shop"
+msgstr "Winkel"
+
+#: .\templates\base.html:135
+msgid "Categories"
+msgstr "Categorieën"
+
+#: .\templates\base.html:140
+msgid "About"
+msgstr "Over"
+
+#: .\templates\base.html:145
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:150
+msgid "Cart"
+msgstr "Winkelwagen"
+
+#: .\templates\base.html:155
+msgid "Login"
+msgstr "Inloggen"
+
+#: .\templates\base.html:160
+msgid "Logout"
+msgstr "Uitloggen"
+
+#: .\templates\base.html:165
+msgid "Profile"
+msgstr "Profiel"
+
 #: .\templates\base.html:217
 msgid "Mon profile"
 msgstr "Mijn profiel"
@@ -94,6 +126,18 @@ msgstr "Registreren"
 #: .\templates\base.html:270
 msgid "2025 The Perfect Gift. Tous droits réservés."
 msgstr "2025 The Perfect Gift. Alle rechten voorbehouden."
+
+#: .\templates\base.html:290
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\base.html:300
+msgid "Follow us"
+msgstr "Volg ons"
+
+#: .\templates\base.html:320
+msgid "The Perfect Gift. Tous droits réservés."
+msgstr "The Perfect Gift. Alle rechten voorbehouden."
 
 #: .\templates\store\index.html:10
 msgid "Offrez des cadeaux qui racontent une histoire"

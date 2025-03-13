@@ -162,7 +162,7 @@
             <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
               <li><a href="{% url 'index' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Accueil" %}</a></li>
               <li><a href="{% url 'store:about' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "A propos" %}</a></li>
-              <li><a href="{% url 'store:contact' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li>
+              {% comment %} <li><a href="{% url 'store:contact' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li> {% endcomment %}
               <li><a href="{% url 'store:product-list' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Nos Cadeaux" %}</a></li>
             </ul>
           </div>
@@ -366,9 +366,9 @@
             <li>
               <a href="{% url 'store:product-list' %}" class="">{%trans "Nos Cadeaux"%}</a>
             </li>
-            <li>
+            {% comment %} <li>
               <a href="{% url 'store:contact' %}" class="">{%trans "Contact"%}</a>
-            </li>
+            </li> {% endcomment %}
           </ul>
         </div>
       </div>
@@ -380,12 +380,44 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-4">
-      <div class="container mx-auto text-center text-sm">
-        &copy;{%trans "2025 The Perfect Gift. Tous droits réservés."%} 
+    <footer class="px-4 py-8 bg-[#f2efea]">
+      <div class="mx-auto max-w-screen-xl">
+        <div class="md:flex md:justify-between">
+          <div class="mb-6 md:mb-0">
+            <a href="{% url 'index' %}" class="flex items-center">
+              <img src="{% static 'images/logo-transparent.png' %}" class="mr-3 h-20" alt="{% trans 'La Boutique de Cadeaux' %}" />
+              <span class="self-center text-2xl font-semibold whitespace-nowrap text-primary">{% trans "The Perfect Gift" %}</span>
+            </a>
+          </div>
+          <div class="grid grid-cols-2 gap-8  ">
+            <div>
+              <h2 class="mb-6 text-sm font-semibold uppercase text-primary">{% trans "Contact" %}</h2>
+              <ul class="text-secondary">
+                <li class="mb-4">
+                  <a href="mailto:the.perfect.gift.antwerpen@gmail.com" class="hover:underline">the.perfect.gift.antwerpen@gmail.com</a>
+                </li>
+                
+              </ul>
+            </div>
+            <div>
+              <h2 class="mb-6 text-sm font-semibold text-primary uppercase ">{% trans "Socials" %}</h2>
+              <ul class="text-secondary">
+                <li class="mb-4">
+                  <a href="https://www.instagram.com/the.perfect.gift.antwerpen?igsh=MTlobnpmemYyMGU3" class="hover:underline">Instagram</a>
+                </li>
+                <li>
+                  <a href="https://www.tiktok.com/@the.perfect.gift3?_t=ZN-8ue455o8Jss&_r=1" class="hover:underline">TikTok</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <div class="sm:flex sm:items-center sm:justify-between">
+          <span class="text-sm  sm:text-center text-primary">&copy; 2025 {% trans "The Perfect Gift. Tous droits réservés." %}</span>
+        </div>
       </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
   </body>
 </html>
