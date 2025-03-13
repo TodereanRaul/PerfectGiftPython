@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load i18n %} {% block content %}
-<div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-8">
+<div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-8 min-h-screen">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Cart Items -->
     <div class="lg:col-span-2">
@@ -27,13 +27,13 @@
         <div class="mt-6 flex md:justify-between">
           <a
             href="{% url 'store:delete-cart' %}"
-            class="w-full mr-4 md:w-auto items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkRose hover:bg-[#F37A9E] transition ease-in text-blanc"
+            class="w-full mr-4  items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkRose hover:bg-[#F37A9E] transition ease-in text-blanc"
           >
             {% trans "Supprimer le panier" %}
           </a>
           <button
             type="submit"
-            class="w-full md:w-auto items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkBlue hover:bg-darkestBlue text-blanc"
+            class="w-full  items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-darkBlue hover:bg-darkestBlue text-blanc"
           >
             {% trans "Mettre à jour le panier" %}
           </button>
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Cart Summary -->
-    <div class="rounded-lg p-6 bg-white shadow-md"> 
+    <div class="rounded-lg p-6 bg-white shadow-md lg:h-auto"> 
       <h3 class="text-xl font-semibold text-primary mb-4">{% trans "Montant total" %}</h3>
       <div class="flex justify-between text-lg text-secondary mb-4">
       <span>{% trans "Sous-total:" %}</span>
@@ -59,13 +59,13 @@
 
       <div class="mt-6">
       <form action="{% url 'store:create_checkout_session' %}" method="POST">
-      {% csrf_token %}
-      <button
-      type="submit"
-      class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-blanc"
-      >
-      {% trans "Procéder au paiement" %}
-      </button>
+        {% csrf_token %}
+        <button
+        type="submit"
+        class="w-full items-center justify-center px-5 py-3 text-base font-semibold text-center rounded-full bg-[#768948] hover:bg-[#5a6b32] transition ease-in text-blanc"
+        >
+        {% trans "Procéder au paiement" %}
+        </button>
       </form>
       </div>
     </div>
