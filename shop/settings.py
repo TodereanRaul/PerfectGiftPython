@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
+import os
 
 import environ
 
@@ -31,12 +32,13 @@ environ.Env.read_env(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u500^nk*0)p&=7=r0#4g%_7zcs3cgf-vjncqvd9do%qblh)q$t'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+# 'django-insecure-u500^nk*0)p&=7=r0#4g%_7zcs3cgf-vjncqvd9do%qblh)q$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -103,11 +105,18 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'CorneliaGift$default',
+        'USER': 'CorneliaGift',
+        'PASSWORD': 'ThePerfectGiftSql',
+        'HOST': 'CorneliaGift.mysql.pythonanywhere-services.com',
     }
 }
 
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
+
+# postgresql://theperfectgift_postresql_user:1YccuMjb1JzyDHgcZcVb5FY10OG3z1c8@dpg-cvcnr6t6l47c73fkl6dg-a.frankfurt-postgres.render.com/theperfectgift_postresql
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
