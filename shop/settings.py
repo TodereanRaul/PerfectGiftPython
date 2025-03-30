@@ -15,17 +15,17 @@ import os
 
 import environ
 
-# Création d'une instance d'Environnement
-env = environ.Env()
-
 from django.conf.global_settings import AUTH_USER_MODEL
 from django.utils.translation import gettext_lazy as _
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Création d'une instance d'Environnement
+env = environ.Env()
 
 # Lecture des variables d'environnement depuis le fichier .env situé à la racine du projet
 environ.Env.read_env(BASE_DIR / ".env")
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -40,7 +40,7 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 PORT = os.environ.get("PORT", "10000")
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost").split(" ")
 
 
 # Application definition
