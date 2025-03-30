@@ -21,12 +21,11 @@ from django.utils.translation import gettext_lazy as _
 # Création d'une instance d'Environnement
 env = environ.Env()
 
-# Lecture des variables d'environnement depuis le fichier .env situé à la racine du projet
-environ.Env.read_env(BASE_DIR / ".env")
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Lecture des variables d'environnement depuis le fichier .env situé à la racine du projet
+environ.Env.read_env(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
