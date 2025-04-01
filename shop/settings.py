@@ -15,11 +15,11 @@ import os
 
 import environ
 
-# Création d'une instance d'Environnement
-env = environ.Env()
-
 from django.conf.global_settings import AUTH_USER_MODEL
 from django.utils.translation import gettext_lazy as _
+
+# Création d'une instance d'Environnement
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,12 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Lecture des variables d'environnement depuis le fichier .env situé à la racine du projet
 environ.Env.read_env(BASE_DIR / ".env")
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "=n_d@%w72^mc4=700l5+-d-_&#trp)sj-%l^($#p-5uw%hjoeh")
 # 'django-insecure-u500^nk*0)p&=7=r0#4g%_7zcs3cgf-vjncqvd9do%qblh)q$t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -40,7 +39,7 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 PORT = os.environ.get("PORT", "10000")
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")
 
 
 # Application definition
@@ -69,17 +68,21 @@ INTERNAL_IPS = [
 ]
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
+# Whitenoise for serving static files
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_browser_reload.middleware.BrowserReloadMiddleware',
 ]
+
+
 
 ROOT_URLCONF = 'shop.urls'
 
@@ -105,19 +108,10 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# PostgreSQL Database Setup
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CorneliaGift$default',
-        'USER': 'CorneliaGift',
-        'PASSWORD': 'ThePerfectGiftSql',
-        'HOST': 'CorneliaGift.mysql.pythonanywhere-services.com',
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
-
-database_url = os.environ.get("DATABASE_URL")
-DATABASES["default"] = dj_database_url.parse(database_url)
-
 # postgresql://theperfectgift_postresql_user:1YccuMjb1JzyDHgcZcVb5FY10OG3z1c8@dpg-cvcnr6t6l47c73fkl6dg-a.frankfurt-postgres.render.com/theperfectgift_postresql
 
 # Password validation
@@ -142,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'fr'
+LANGUAGE_CODE = 'en'
 
 LANGUAGES = [
     ('en', _('English')),
@@ -168,13 +162,19 @@ GETTEXT_EXCLUDED_DIRS = ['node_modules', 'env', 'venv', '.git', '__pycache__']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
+# Static and Media Files
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/" #URL dans le navigateur
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-MEDIA_URL = "/media/" #URL dans le navigateur
-MEDIA_ROOT = BASE_DIR / "media"
 AUTH_USER_MODEL = "accounts.Shopper"
 STRIPE_API_KEY = env("STRIPE_API_KEY")
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
