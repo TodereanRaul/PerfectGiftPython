@@ -17,8 +17,8 @@ from accounts.models import ShippingAddress, Shopper
 from shop import settings
 from store.forms import OrderForm
 from store.models import Product, Cart, Order  # import product
-
-YOUR_DOMAIN = 'http://localhost:8000'
+ 
+YOUR_DOMAIN = 'https://www.theperfectgifts.be/'
 
 stripe.api_key = settings.STRIPE_API_KEY
 
