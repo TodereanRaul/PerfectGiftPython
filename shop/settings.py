@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'tailwind',
     'theme',
-    'django_browser_reload'
+    'django_browser_reload',
 ]
 
 # setup for tailwind
@@ -168,8 +168,13 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/" #URL dans le navigateur
-MEDIA_ROOT = "/products/" #Dossier sur le serveur
-# MEDIA_ROOT = BASE_DIR / "media/" #Dossier sur le serveur local
+MEDIA_ROOT = BASE_DIR / "media/" #Dossier sur le serveur local
+
+# Configure media storage for production
+if not DEBUG:
+    # Use Render's disk storage for media files in production
+    # No need for S3 configuration when using Render's disk storage
+    pass
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
