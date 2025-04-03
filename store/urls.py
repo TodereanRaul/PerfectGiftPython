@@ -1,4 +1,5 @@
 from django.urls import path
+from django.conf.urls.static import static
 
 from store.views import about, cart, contact, delete_cart, product_detail, add_to_cart, create_checkout_session, \
     checkout_success, product_list, stripe_webhook
@@ -17,3 +18,5 @@ urlpatterns = [
     path('product/<str:slug>/', product_detail, name="product"),
     path('product/<str:slug>/add-to-cart/', add_to_cart, name="add-to-cart"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
