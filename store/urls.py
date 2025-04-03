@@ -17,3 +17,5 @@ urlpatterns = [
     path('product/<str:slug>/', product_detail, name="product"),
     path('product/<str:slug>/add-to-cart/', add_to_cart, name="add-to-cart"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
