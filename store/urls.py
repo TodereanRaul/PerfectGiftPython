@@ -18,4 +18,4 @@ urlpatterns = [
     path('product/<str:slug>/add-to-cart/', add_to_cart, name="add-to-cart"),
 ]
 
-https://github.com/TodereanRaul/PerfectGiftPython/commit/a25e9ea8c39503764e745051921c0be5abad7e03
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
