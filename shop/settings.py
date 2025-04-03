@@ -167,14 +167,15 @@ GETTEXT_EXCLUDED_DIRS = ['node_modules', 'env', 'venv', '.git', '__pycache__']
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media/" #URL dans le navigateur
-MEDIA_ROOT = BASE_DIR / "media/" #Dossier sur le serveur local
+MEDIA_URL = "/media/"
 
 # Configure media storage for production
 if not DEBUG:
     # Use Render's disk storage for media files in production
-    # No need for S3 configuration when using Render's disk storage
-    pass
+    MEDIA_ROOT = Path("/var/data/media")
+else:
+    # Use local media directory for development
+    MEDIA_ROOT = BASE_DIR / "media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
