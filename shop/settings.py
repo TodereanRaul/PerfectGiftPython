@@ -165,13 +165,11 @@ GETTEXT_EXCLUDED_DIRS = ['node_modules', 'env', 'venv', '.git', '__pycache__']
 
 # Static and Media Files
 STATIC_URL = '/static/'
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/" #URL dans le navigateur
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = "/opt/render/project/src/media/" #Dossier sur le serveur
+# MEDIA_ROOT = BASE_DIR / "media/" #Dossier sur le serveur local
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
