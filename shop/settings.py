@@ -168,7 +168,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/" #URL dans le navigateur
-MEDIA_ROOT = "/opt/render/project/src/media/" #Dossier sur le serveur
+MEDIA_ROOT = "/products/" #Dossier sur le serveur
 # MEDIA_ROOT = BASE_DIR / "media/" #Dossier sur le serveur local
 
 # Default primary key field type
