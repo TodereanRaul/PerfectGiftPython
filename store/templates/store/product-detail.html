@@ -11,34 +11,33 @@
           data-carousel="slide"
         >
           <!-- Carousel wrapper -->
-          <div class="relative h-80 overflow-hidden rounded-lg md:h-[500px]">
+          <div class="relative h-80 overflow-hidden rounded-lg md:h-[500px] bg-gray-100">
             {% for image in product.images.all %}
-            <div
-              class="hidden duration-700 ease-in-out h-full"
-              data-carousel-item
-            >
-              <img
-                src="{{ image.image.url }}"
-                alt="{{ product.name }}"
-                class="absolute block w-full object-contain h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              />
-            </div>
+              <div class="hidden duration-700 ease-in-out h-full flex items-center justify-center" data-carousel-item>
+                <img
+                  src="{{ image.image.url }}"
+                  alt="{{ product.name }}"
+                  class="max-h-full max-w-full object-contain"
+                />
+              </div>
             {% endfor %}
           </div>
+
           <!-- Slider indicators -->
           <div
             class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
           >
             {% for image in product.images.all %}
-            <button
-              type="button"
-              class="w-6 h-3 rounded-full bg-white opacity-75 hover:opacity-100"
-              aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
-              aria-label="Slide {{ forloop.counter }}"
-              data-carousel-slide-to="{{ forloop.counter0 }}"
-            ></button>
+              <button
+                type="button"
+                class="w-6 h-3 rounded-full bg-white opacity-75 hover:opacity-100"
+                aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-label="Slide {{ forloop.counter }}"
+                data-carousel-slide-to="{{ forloop.counter0 }}"
+              ></button>
             {% endfor %}
           </div>
+
           <!-- Slider controls -->
           <button
             type="button"
@@ -94,6 +93,7 @@
           </button>
         </div>
       </div>
+
 
       <div class="col-span-2 lg:mt-0 border rounded-lg p-6">
         <!-- Product Title -->
@@ -189,7 +189,7 @@
                 </div>
                 {% endif %}
               </figure>
-              <div class="card-body mt-4 bg-blanc text-center">
+              <div class="card-body mt-4 bg-white text-center">
                 <div class="flex justify-between">
                   <p class="w-full text-primary text-p mb-2">{{ variant.name }}</p>
                 </div>
