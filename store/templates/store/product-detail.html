@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<section class="py-8 md:py-16 antialiased">
+<section class="py-8 md:py-16 antialiased bg-white">
   <div class="max-w-screen-xl px-4 mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-5 gap-5 xl:gap-16">
       <!-- Product Carousel -->
@@ -20,7 +20,7 @@
               <img
                 src="{{ image.image.url }}"
                 alt="{{ product.name }}"
-                class="absolute block w-full object-cover h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                class="absolute block w-full object-contain h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
               />
             </div>
             {% endfor %}
@@ -107,7 +107,7 @@
         </div>
 
         <!-- Product Description -->
-        <div class="my-6 text-primary max-h-48 overflow-y-auto">
+        <div class="my-6 text-primary max-h-56 overflow-y-auto">
           {{ product.description|safe }}
         </div>
 
@@ -144,7 +144,7 @@
             >
             <div class="flex flex-col">
               <p class="text-primary">Se produit est disponible</p>
-              <p class="text-secondary">Expédition sous 24 heures</p>
+              <p class="text-secondary">Expédition en 5 jours ouvrables</p>
             </div>
           </div>
 
@@ -170,7 +170,7 @@
       </div>
     </div>
   </div>
-  <div class="max-w-screen-xl px-4 mx-auto mt-8">
+  <div class="max-w-screen-xl px-4 mx-auto mt-8 md:mt-10">
     <!-- Variants -->
     {% if product.variants.exists %}
     <h3 class="text-3xl text-primary mb-8">Vous pourriez aussi aimer</h3>

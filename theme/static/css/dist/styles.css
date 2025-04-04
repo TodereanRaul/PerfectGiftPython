@@ -1416,6 +1416,21 @@ input[type="range"]::-ms-fill-lower {
   margin-bottom: 2rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1486,6 +1501,10 @@ input[type="range"]::-ms-fill-lower {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
 }
 
 .block {
@@ -1578,6 +1597,10 @@ input[type="range"]::-ms-fill-lower {
 
 .max-h-48 {
   max-height: 12rem;
+}
+
+.max-h-56 {
+  max-height: 14rem;
 }
 
 .min-h-screen {
@@ -1949,6 +1972,11 @@ input[type="range"]::-ms-fill-lower {
   --tw-gradient-to: #fcf8f4 var(--tw-gradient-to-position);
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -2044,6 +2072,21 @@ input[type="range"]::-ms-fill-lower {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-10 {
@@ -2478,6 +2521,11 @@ input[type="range"]::-ms-fill-lower {
     grid-column: span 2 / span 2;
   }
 
+  .md\:my-0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
   .md\:mb-0 {
     margin-bottom: 0px;
   }
@@ -2488,6 +2536,10 @@ input[type="range"]::-ms-fill-lower {
 
   .md\:mb-6 {
     margin-bottom: 1.5rem;
+  }
+
+  .md\:mt-10 {
+    margin-top: 2.5rem;
   }
 
   .md\:block {
@@ -2732,12 +2784,6 @@ input[type="range"]::-ms-fill-lower {
 
   .xl\:gap-16 {
     gap: 4rem;
-  }
-}
-
-@media (min-width: 1450px) {
-  .xl2\:flex {
-    display: flex;
   }
 }
 
