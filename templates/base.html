@@ -1,4 +1,4 @@
-{% load static tailwind_tags %} {% load i18n %}
+{% load static tailwind_tags %} {% load static %} {% load i18n %}
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -132,224 +132,230 @@
     {% comment %} end banner {% endcomment %}
     <!-- Header -->
 
-    <form action="{% url 'set_language' %}" method="post">
-      {% csrf_token %}
-      <select name="language" onchange="this.form.submit()">
-        <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>
-          English
-        </option>
-        <option value="fr" {% if request.LANGUAGE_CODE == 'fr' %}selected{% endif %}>
-          Français
-        </option>
-        <option value="nl" {% if request.LANGUAGE_CODE == 'nl' %}selected{% endif %}>
-          Nederlands
-        </option>
-      </select>
-    </form>
-    
     <nav class="antialiased">
       <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-8">
-            <div class="shrink-0">
+            {% comment %} <div class="shrink-0">
               <a
                 href="{% url 'index' %}"
                 class="flex items-center space-x-3 rtl:space-x-reverse"
               >
               <img src="{% static 'images/logo-transparent.png' %}" class="h-20" alt="{% trans 'La Boutique de Cadeaux' %}" />
               </a>
-            </div>
+            </div> {% endcomment %}
             <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
-              <li><a href="{% url 'index' %}" class="flex text-base font-medium hover:text-[#afaaa] duration-100 ease-in relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#554c44] after:left-0 after:-bottom-1 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">{% trans "Accueil" %}</a></li>
-              <li><a href="{% url 'store:about' %}" class="flex text-base font-medium hover:text-[#afaaa] duration-100 ease-in relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#554c44] after:left-0 after:-bottom-1 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">{% trans "A propos" %}</a></li>
+              <li><a href="{% url 'index' %}" class="flex text-base font-medium text-black hover:text-accent transition-colors duration-100 ease-in">{% trans "Accueil" %}</a></li>
+              <li><a href="{% url 'store:about' %}" class="flex text-base font-medium text-black hover:text-accent transition-colors duration-100 ease-in">{% trans "A propos" %}</a></li>
               {% comment %} <li><a href="{% url 'store:contact' %}" class="flex text-base font-medium hover:text-accent duration-100 ease-in">{% trans "Contact" %}</a></li> {% endcomment %}
-              <li><a href="{% url 'store:product-list' %}" class="flex text-base font-medium hover:text-[#afaaa] duration-100 ease-in relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#554c44] after:left-0 after:-bottom-1 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100">{% trans "Nos Cadeaux" %}</a></li>
+              <li><a href="{% url 'store:product-list' %}" class="flex text-base font-medium text-black hover:text-accent transition-colors duration-100 ease-in">{% trans "Nos Cadeaux" %}</a></li>
             </ul>
           </div>
-          <div class="flex items-center lg:space-x-2">
-            {% if user.is_authenticated %}
-            <span class="mr-4 font-medium text-secondary hidden md:block">{% trans "Bienvenue" %}, {{ user.email }}</span>
-            {% if user.cart and not user.cart.ordered %}
-            <a
-              href="{% url 'store:cart' %}"
-              class="inline-flex items-center rounded-lg justify-center p-2 font-medium leading-none hover:bg-rose text-base text-primary hover:text-pink-400"
-            >
-              <svg
-                class="w-5 h-5 lg:me-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
-                />
-              </svg>
-              <span class="hidden sm:flex"
-                >{% trans "Mon panier" %} ({{ user.cart.orders.count }})</span
-              >
-            </a>
-            {% endif %}
-            <button
-              id="userDropdownButton1"
-              data-dropdown-toggle="userDropdown1"
-              type="button"
-              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
-            >
-              <svg
-                class="w-5 h-5 me-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-width="2"
-                  d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-              Account
-              <svg
-                class="w-4 h-4 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m19 9-7 7-7-7"
-                />
-              </svg>
-            </button>
-            <div
-              id="userDropdown1"
-              class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
-            >
-              <ul class="p-2 text-start text-sm font-medium text-primary">
-                <li>
-                  <a
-                    href="{% url 'accounts:profile' %}"
-                    title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >{%trans "Mon profile"%}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="{% url 'accounts:signout' %}"
-                    title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >{%trans "Se déconnecter"%}</a
-                  >
-                </li>
-              </ul>
-            </div>
-            {% else %}
-            <button
-              id="userDropdownButton1"
-              data-dropdown-toggle="userDropdown1"
-              type="button"
-              class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
-            >
-              <svg
-                class="w-5 h-5 me-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-width="2"
-                  d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                />
-              </svg>
-              {%trans "Mon compte"%}
-              <svg
-                class="w-4 h-4 ms-1"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="m19 9-7 7-7-7"
-                />
-              </svg>
-            </button>
-            <div
-              id="userDropdown1"
-              class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
-            >
-              <ul class="p-2 text-start text-sm font-medium text-primary">
-                <li>
-                  <a
-                    href="{% url 'accounts:signup' %}"
-                    title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >{%trans "S'inscrire"%}</a
-                  >
-                </li>
-                <li>
-                  <a
-                    href="{% url 'accounts:login' %}"
-                    title=""
-                    class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
-                    >{%trans "Se connecter"%}</a
-                  >
-                </li>
-              </ul>
-            </div>
 
-            {% endif %}
-            <button
-              type="button"
-              data-collapse-toggle="ecommerce-navbar-menu-1"
-              aria-controls="ecommerce-navbar-menu-1"
-              aria-expanded="false"
-              class="inline-flex lg:hidden items-center justify-center rounded-md p-2 text-primary hover:text-pink-500 hover:bg-rose"
-            >
-              <span class="sr-only">Open Menu</span>
-              <svg
-                class="w-5 h-5"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
+          <div class="flex gap-2">
+            <div class="flex items-center lg:space-x-2">
+              {% if user.is_authenticated %}
+              <span class="mr-4 font-medium text-secondary hidden md:block">{% trans "Bienvenue" %}, {{ user.email }}</span>
+              {% if user.cart and not user.cart.ordered %}
+              <a
+                href="{% url 'store:cart' %}"
+                class="inline-flex items-center rounded-lg justify-center p-2 font-medium leading-none hover:bg-rose text-base text-primary hover:text-pink-400"
               >
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-width="2"
-                  d="M5 7h14M5 12h14M5 17h14"
-                />
-              </svg>
-            </button>
+                <svg
+                  class="w-5 h-5 lg:me-1"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"
+                  />
+                </svg>
+                <span class="hidden sm:flex"
+                  >{% trans "Mon panier" %} ({{ user.cart.orders.count }})</span
+                >
+              </a>
+              {% endif %}
+              <button
+                id="userDropdownButton1"
+                data-dropdown-toggle="userDropdown1"
+                type="button"
+                class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
+              >
+                <svg
+                  class="w-5 h-5 me-1"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+                Account
+                <svg
+                  class="w-4 h-4 ms-1"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 9-7 7-7-7"
+                  />
+                </svg>
+              </button>
+            
+              <div
+                id="userDropdown1"
+                class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
+              >
+                <ul class="p-2 text-start text-sm font-medium text-primary">
+                  <li>
+                    <a
+                      href="{% url 'accounts:profile' %}"
+                      title=""
+                      class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                      >{%trans "Mon profile"%}</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'accounts:signout' %}"
+                      title=""
+                      class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                      >{%trans "Se déconnecter"%}</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              {% else %}
+              <button
+                id="userDropdownButton1"
+                data-dropdown-toggle="userDropdown1"
+                type="button"
+                class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-rose text-base font-medium leading-none text-primary hover:text-pink-400"
+              >
+                <svg
+                  class="w-5 h-5 me-1"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-width="2"
+                    d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+                {%trans "Mon compte"%}
+                <svg
+                  class="w-4 h-4 ms-1"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 9-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                id="userDropdown1"
+                class="hidden z-10 w-56 divide-y overflow-hidden overflow-y-auto rounded-lg bg-blanc antialiased shadow-lg"
+              >
+                <ul class="p-2 text-start text-sm font-medium text-primary">
+                  <li>
+                    <a
+                      href="{% url 'accounts:signup' %}"
+                      title=""
+                      class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                      >{%trans "S'inscrire"%}</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="{% url 'accounts:login' %}"
+                      title=""
+                      class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-base text-primary hover:text-pink-400 hover:bg-rose"
+                      >{%trans "Se connecter"%}</a
+                    >
+                  </li>
+                </ul>
+              </div>
+  
+              {% endif %}
+              <button
+                type="button"
+                data-collapse-toggle="ecommerce-navbar-menu-1"
+                aria-controls="ecommerce-navbar-menu-1"
+                aria-expanded="false"
+                class="inline-flex lg:hidden items-center justify-center rounded-md p-2 text-primary hover:text-pink-500 hover:bg-rose"
+              >
+                <span class="sr-only">Open Menu</span>
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-width="2"
+                    d="M5 7h14M5 12h14M5 17h14"
+                  />
+                </svg>
+              </button>
+            </div>
+            <form action="{% url 'set_language' %}" method="post" >
+              {% csrf_token %}
+              <select name="language" onchange="this.form.submit()"
+                class="flex items-center gap-2 px-3 py-2 bg-blanc border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#554c44] focus:border-gray-400 transition-colors duration-200 appearance-none">
+                
+                <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>
+                  🇬🇧  ENG
+                </option>
+                <option value="fr" {% if request.LANGUAGE_CODE == 'fr' %}selected{% endif %}>
+                  🇫🇷  FR
+                </option>
+                <option value="nl" {% if request.LANGUAGE_CODE == 'nl' %}selected{% endif %}>
+                  🇧🇪  NL
+                </option>
+              </select>
+            </form>
+      
           </div>
         </div>
         <div
@@ -371,6 +377,7 @@
             </li> {% endcomment %}
           </ul>
         </div>
+        
       </div>
     </nav>
 

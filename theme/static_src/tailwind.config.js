@@ -57,6 +57,9 @@ module.exports = {
         secondary: "#7d766e",
         accent: "#afaaa4",
       },
+      screens: {
+        'xl2': '1450px', 
+      },
     },
   },
   plugins: [
