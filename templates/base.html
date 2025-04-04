@@ -4,9 +4,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Perfect Gift</title>
+
+    <!-- SEO Title -->
+    <title>The Perfect Gift | Your One-Stop Shop for Gift Ideas</title>
+
+    <!-- Meta Description -->
+    <meta name="description" content="Find the perfect gift for every occasion. Browse through our wide selection of thoughtful and unique gift ideas for your loved ones." />
+
+    <!-- Author meta tag -->
+    <meta name="author" content="The Perfect Gift" />
+
+    <!-- Open Graph Meta Tags (for social media sharing) -->
+    <meta property="og:title" content="The Perfect Gift | Your One-Stop Shop for Gift Ideas" />
+    <meta property="og:description" content="Discover the perfect gift for any occasion with our collection of handpicked and unique ideas." />
+    <meta property="og:image" content="{% static 'images/logo.pnh' %}" />
+    <meta property="og:url" content="https://www.theperfectgifts.be/" />
+    <meta property="og:type" content="website" />
+
     {% tailwind_css %}
     <link rel="stylesheet" href="{% static 'css/dist/styles.css' %}" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.theperfectgifts.be/" />
   </head>
   <body class="bg-blanc text-primary">
     {% comment %} banner {% endcomment %}
