@@ -180,7 +180,7 @@
       
           <div class="card card-compact overflow-hidden transform transition-transform hover:-translate-y-1">
             <a href="{{ variant.get_absolute_url }}" class="block pb-4">
-              <figure class="h-64 w-full bg-gray-100 relative">
+              <figure class="h-64 md:h-72 w-full bg-gray-100 relative">
                 {% if variant.thumbnail %}
                 <img src="{{ variant.thumbnail.url }}" alt="{{ variant.name }}" class="object-cover h-full w-full rounded" />
                 {% else %}
