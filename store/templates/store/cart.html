@@ -1,11 +1,11 @@
 {% extends 'base.html' %} {% load i18n %} {% block content %}
-<div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-8 min-h-screen">
+<div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-8 md:py-16 bg-white">
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
     <!-- Cart Items -->
     <div class="lg:col-span-2">
       <form method="POST">
         {% csrf_token %} {{ forms.management_form }} {% for form in forms %}
-        <div class="rounded-lg p-6 mb-6 bg-white shadow-md">
+        <div class="rounded-lg p-6 mb-6 bg-blanc shadow-md">
           <div class="flex items-center">
             <img
               src="{{ form.instance.product.thumbnail.url }}"
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Cart Summary -->
-    <div class="rounded-lg p-6 bg-white shadow-md lg:h-auto"> 
+    <div class="rounded-lg p-6 bg-blanc shadow-md lg:h-auto"> 
       <h3 class="text-xl font-semibold text-primary mb-4">{% trans "Montant total" %}</h3>
       <div class="flex justify-between text-lg text-secondary mb-4">
       <span>{% trans "Sous-total:" %}</span>
