@@ -42,6 +42,7 @@ PORT = os.environ.get("PORT", "10000")
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")
 
 STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY", "")  # Replace with your actual Stripe API key
+ENDPOINT_SECRET = os.environ.get("ENDPOINT_SECRET", "")  # Replace with your actual Stripe webhook secret
 
 
 # Application definition

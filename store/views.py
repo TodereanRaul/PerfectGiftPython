@@ -12,6 +12,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 import stripe.error
+from django.conf import settings
 
 from accounts.models import ShippingAddress, Shopper
 from shop import settings
@@ -92,7 +93,7 @@ def cart(request):
 
 
 def create_checkout_session(request):
-    user  = request.user
+    user = request.user
 
     # check if user has a stripe id, if not create one
     if not user.stripe_id:
@@ -102,8 +103,7 @@ def create_checkout_session(request):
             user.stripe_id = customer['id']
             user.save()
         except stripe.error.StripeError as e:
-            # Display a very generic error to the user
-            print(f"Erreur Stripe : {e}")
+            print(f"Stripe Error: {e}")
             return JsonResponse({"error": str(e)}, status=500)
 
     cart = user.cart
@@ -119,10 +119,10 @@ def create_checkout_session(request):
                 'allowed_countries': ['BE']
             },
             customer=user.stripe_id,
-            payment_method_types=['card'],  
+            payment_method_types=['card'],
             line_items=line_items,
             mode='payment',
-            success_url = YOUR_DOMAIN + reverse('store:checkout-success'),
+            success_url=YOUR_DOMAIN + reverse('store:checkout-success'),
             cancel_url=YOUR_DOMAIN + '/',
             metadata={
                 "user_email": request.user.email
@@ -133,9 +133,10 @@ def create_checkout_session(request):
         return redirect(checkout_session.url, code=303)
 
     except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500) 
+        print(f"Checkout Session Error: {e}")
+        return JsonResponse({"error": str(e)}, status=500)
 
-endpoint_secret = 'whsec_f16fb571c2acb7a31abd102a6f909dd85f54ef5d7d2d91866b420215b47751af'
+endpoint_secret = settings.ENDPOINT_SECRET
 
 def checkout_success(request):
     user = request.user
@@ -166,10 +167,10 @@ def stripe_webhook(request):
             payload, sig_header, endpoint_secret
         )
     except ValueError as e:
-        print(f"Payload invalide : {str(e)}")
+        print(f"Invalid payload: {str(e)}")
         return HttpResponse(status=400)
     except stripe.error.SignatureVerificationError as e:
-        print(f"Signature invalide : {str(e)}")
+        print(f"Invalid signature: {str(e)}")
         return HttpResponse(status=400)
 
     # Handle the event
