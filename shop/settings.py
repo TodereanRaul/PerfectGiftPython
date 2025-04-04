@@ -41,7 +41,7 @@ PORT = os.environ.get("PORT", "10000")
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "localhost 127.0.0.1").split(" ")
 
-STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY", "sk_test_51R0NE4P2Ht3bcQxjpEGiHqe6NnAARNtB0Y8ByGHopqZuQiYBiMXh6jhvjS06VFIS1phn521HrnyU8xlL3od98ENW00TLYG1zmx")  # Replace with your actual Stripe API key
+STRIPE_API_KEY = os.environ.get("STRIPE_API_KEY", "")  # Replace with your actual Stripe API key
 
 
 # Application definition
